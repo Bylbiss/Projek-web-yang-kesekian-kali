@@ -1,0 +1,7973 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Debug info styling */
+.debug-info {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    z-index: 9999;
+    display: block;
+}
+
+/* Smooth scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ============================================
+STYLE UNTUK DASHBOARD & HALAMAN UMUM
+============================================ */
+
+/* Parallax Background untuk dashboard */
+body.dashboard-page {
+    background: url('anabul.png') center/cover fixed no-repeat;
+    color: #333;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Parallax Background untuk halaman umum lainnya */
+body:not(.login-page):not(.dashboard-page) {
+    background: #f9f9f9;
+    color: #333;
+    min-height: 100vh;
+}
+
+/* Header Transparan - Fixed di Atas */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px clamp(15px, 5vw, 40px);
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(230, 89, 160, 0.3);
+    /* Pink border */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    z-index: 1000;
+    color: #e83e8c;
+    /* Pink untuk semua teks */
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    font-size: 28px;
+    color: #e83e8c;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.logo-text {
+    font-size: 28px;
+    font-weight: bold;
+    color: #e83e8c;
+    letter-spacing: 1px;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.6s forwards;
+    transition: color 0.3s ease;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: #e83e8c;
+}
+
+.nav-links {
+    display: flex;
+    gap: clamp(20px, 4vw, 50px);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #e83e8c;
+    /* Pink */
+    font-weight: 500;
+    font-size: clamp(14px, 1.8vw, 16px);
+    padding: 6px 8px;
+    border-radius: 6px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+    background: rgba(255, 105, 180, 0.15);
+    /* Pink transparan */
+    color: #e83e8c;
+    /* Tetap pink */
+    transform: translateY(-1px);
+}
+
+.btn-login {
+    padding: 8px 20px;
+    background: transparent;
+    color: #e83e8c;
+    /* Pink */
+    border: 2px solid #e83e8c;
+    /* Pink border */
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(255, 105, 180, 0.2);
+    /* Pink shadow */
+}
+
+.btn-login:hover {
+    background: rgba(255, 105, 180, 0.1);
+    /* Pink transparan */
+    color: #e83e8c;
+    /* Tetap pink */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 105, 180, 0.3);
+    /* Pink shadow */
+}
+
+/* Hero Content */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding-top: 80px;
+}
+
+.hero-content {
+    text-align: center;
+    max-width: 800px;
+    padding: 0 clamp(15px, 5vw, 40px);
+    opacity: 0;
+    animation: fadeIn 1.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-logo {
+    font-size: clamp(36px, 7vw, 52px);
+    font-weight: 800;
+    margin-bottom: 16px;
+    color: white;
+    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.7);
+}
+
+.hero-desc {
+    font-size: clamp(16px, 2.2vw, 19px);
+    font-weight: 500;
+    margin-bottom: 32px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+/* Fish-Eye Menu */
+.fish-eye-menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: clamp(20px, 5vw, 30px);
+    width: 100%;
+    max-width: 800px;
+    margin-top: 10px;
+}
+
+.fish-item {
+    padding: 24px 20px;
+    background: rgba(255, 255, 255, 0.94);
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
+.fish-item:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.25);
+}
+
+.fish-icon {
+    font-size: 42px;
+    color: #e83e8c;
+    margin-bottom: 16px;
+}
+
+.fish-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.fish-desc {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.55;
+}
+
+/* ============================================
+FOOTER PINK UNTUK SEMUA HALAMAN
+============================================ */
+
+/* App Store Section */
+footer .app-store {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+footer .app-store img {
+    width: 30px !important;
+    height: auto;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    display: block;
+    margin-bottom: 10px;
+}
+
+.app-store img:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Ukuran untuk halaman spesifik */
+.faq-page .app-store img,
+.schedule-clinic-page .app-store img,
+.booking-confirmation-page .app-store img,
+.services-page .app-store img,
+.pemesanan-klinik-page .app-store img,
+.kupon-page .app-store img,
+.profil-page .app-store img,
+.temui-online-page .app-store img,
+.confirmation-page .app-store img,
+.history-page .app-store img {
+    width: 140px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.faq-page .app-store img:hover,
+.schedule-clinic-page .app-store img:hover,
+.booking-confirmation-page .app-store img:hover,
+.services-page .app-store img:hover,
+.pemesanan-klinik-page .app-store img:hover,
+.kupon-page .app-store img:hover,
+.profil-page .app-store img:hover,
+.temui-online-page .app-store img:hover,
+.confirmation-page .app-store img:hover,
+.history-page .app-store img:hover {
+    transform: translateY(-3px);
+}
+
+/* Hover effect khusus untuk App Store section di footer */
+footer div h3+p {
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+}
+
+/* Responsif untuk App Store */
+@media (max-width: 768px) {
+    .app-store {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .app-store img {
+        width: 135px;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-store {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .app-store img {
+        width: 120px;
+    }
+}
+
+/* Untuk halaman-halaman spesifik */
+.schedule-clinic-page .app-store img,
+.booking-confirmation-page .app-store img,
+.faq-page .app-store img,
+.services-page .app-store img,
+.pemesanan-klinik-page .app-store img,
+.kupon-page .app-store img,
+.profil-page .app-store img,
+.temui-online-page .app-store img {
+    width: 150px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.schedule-clinic-page .app-store img:hover,
+.booking-confirmation-page .app-store img:hover,
+.faq-page .app-store img:hover,
+.services-page .app-store img:hover,
+.pemesanan-klinik-page .app-store img:hover,
+.kupon-page .app-store img:hover,
+.profil-page .app-store img:hover,
+.temui-online-page .app-store img:hover {
+    transform: translateY(-3px);
+}
+
+/* Footer base styling - Pink untuk semua halaman */
+footer {
+    background: #e83e8c !important;
+    color: white !important;
+    padding: clamp(30px, 6vw, 50px) clamp(20px, 5vw, 60px) !important;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
+    gap: clamp(25px, 5vw, 40px) !important;
+    margin-top: 60px !important;
+    position: relative;
+    overflow: hidden;
+}
+
+footer h3 {
+    font-size: 16px !important;
+    margin-bottom: 20px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    color: white !important;
+}
+
+footer a {
+    color: #fff !important;
+    text-decoration: none !important;
+    display: block !important;
+    margin-bottom: 8px !important;
+    transition: all 0.3s ease !important;
+}
+
+footer a:hover {
+    color: #f0f0f0 !important;
+    transform: translateX(5px) !important;
+}
+
+footer p,
+footer span,
+footer li {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.social-icons {
+    display: flex !important;
+    gap: 15px !important;
+    margin-top: 15px !important;
+}
+
+.social-icons a {
+    font-size: 22px !important;
+    width: 40px !important;
+    height: 40px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 50% !important;
+    transition: all 0.3s ease !important;
+    color: white !important;
+    text-decoration: none !important;
+}
+
+.social-icons a:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    transform: translateY(-3px) !important;
+}
+
+.copyright {
+    text-align: center !important;
+    padding-top: 20px !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-size: 14px !important;
+    margin-top: 20px !important;
+    grid-column: 1 / -1 !important;
+}
+
+/* Optional: Efek gradient untuk footer */
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(232, 62, 140, 0.9), rgba(214, 51, 132, 0.9));
+    z-index: 1;
+}
+
+footer>* {
+    position: relative;
+    z-index: 2;
+}
+
+/* Hapus semua footer styling spesifik halaman yang bertentangan */
+.schedule-clinic-page footer,
+.booking-confirmation-page footer,
+.faq-page footer,
+.services-page footer,
+.pemesanan-klinik-page footer,
+.kupon-page footer,
+.profil-page footer,
+.temui-online-page footer {
+    background: #e83e8c !important;
+    color: white !important;
+    padding: clamp(30px, 6vw, 50px) clamp(20px, 5vw, 60px) !important;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
+    gap: clamp(25px, 5vw, 40px) !important;
+    margin-top: 60px !important;
+}
+
+/* Pastikan tidak ada kontradiksi */
+.schedule-clinic-page .footer-content,
+.booking-confirmation-page .footer-content {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+    gap: 30px !important;
+    margin-bottom: 25px !important;
+}
+
+/* Reset untuk kolom footer */
+.schedule-clinic-page .footer-column h3::after,
+.booking-confirmation-page .footer-column h3::after {
+    display: none !important;
+}
+
+.user-avatar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #e83e8c;
+    /* Pink */
+    font-weight: 500;
+    border: 1px solid rgba(255, 105, 180, 0.3);
+    /* Pink border */
+}
+
+.user-avatar:hover {
+    background: rgba(255, 105, 180, 0.15);
+    /* Pink transparan */
+    transform: translateY(-2px);
+    color: #e83e8c;
+    /* Tetap pink */
+}
+
+.user-avatar i {
+    color: #e83e8c;
+    /* Pink untuk ikon */
+}
+
+.user-avatar i:first-child {
+    font-size: 18px;
+}
+
+.user-avatar i:last-child {
+    font-size: 12px;
+    transition: transform 0.3s ease;
+    margin-left: 5px;
+}
+
+/* Logout Confirmation Modal */
+.logout-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h3 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.modal-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-confirm {
+    background: #e83e8c;
+    color: white;
+}
+
+.btn-confirm:hover {
+    background: #d63384;
+}
+
+.btn-cancel {
+    background: #f0f0f0;
+    color: #666;
+}
+
+.btn-cancel:hover {
+    background: #e0e0e0;
+}
+
+/* Style untuk link profil user */
+.user-profile-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 105, 180, 0.3);
+    color: rgb(255, 105, 180);
+    font-weight: 500;
+}
+
+.user-profile-link:hover {
+    background: rgba(255, 105, 180, 0.15);
+    transform: translateY(-2px);
+    color: rgb(255, 105, 180);
+    text-decoration: none;
+}
+
+.user-profile-link i {
+    font-size: 18px;
+}
+
+.user-profile-link span {
+    font-size: 14px;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .user-profile-link {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+
+    .user-profile-link i {
+        font-size: 16px;
+    }
+}
+
+/* ============================================
+STYLE KHUSUS UNTUK HALAMAN LOGIN
+============================================ */
+
+/* Body untuk halaman login */
+body.login-page {
+    display: flex;
+    height: 100vh;
+    background: #f9f9f9 !important;
+    overflow: hidden;
+}
+
+.image-side {
+    width: 50%;
+    background: url('https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+    position: relative;
+    opacity: 0;
+    animation: bgFadeIn 1.2s ease-out forwards;
+}
+
+@keyframes bgFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(1.02);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.image-side::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.form-side {
+    width: 50%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: white;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: formSlideUp 0.9s ease-out 0.3s forwards;
+}
+
+@keyframes formSlideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Logo container di halaman login */
+.login-logo-container {
+    text-align: center;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.logo-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.login-logo-container:hover {
+    transform: scale(1.02);
+}
+
+.logo-container.login-logo-container:hover .logo-text {
+    color: #d63384;
+}
+
+.login-logo {
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.6s forwards;
+    transition: color 0.3s ease;
+    color: #e83e8c;
+    margin-top: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+.login-logo-container:hover .login-logo {
+    color: #e83e8c;
+}
+
+.login-tagline {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.7s forwards;
+    text-align: center;
+    width: 100%;
+}
+
+.login-location {
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.8s forwards;
+    text-align: center;
+    width: 100%;
+}
+
+.login-icon {
+    font-size: 48px;
+    color: #e83e8c;
+    margin-bottom: 15px;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.9s forwards;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.login-icon i {
+    transition: transform 0.3s ease;
+}
+
+.logo-container.login-logo-container:hover .login-icon i {
+    transform: scale(1.1);
+}
+
+.toggle-btn {
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    color: #e83e8c;
+    border: 2px solid #e83e8c;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+    font-weight: 500;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.8s forwards;
+}
+
+.toggle-btn a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.toggle-btn:hover {
+    background: rgba(232, 62, 140, 0.06);
+    transform: translateY(-2px);
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    color: #888;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.9s forwards;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #ddd;
+}
+
+.divider span {
+    padding: 0 12px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 1s forwards;
+}
+
+.form-group:nth-of-type(2) {
+    animation-delay: 1.1s;
+}
+
+.form-group:nth-of-type(3) {
+    animation-delay: 1.2s;
+}
+
+.form-side input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 14px;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    background: #fafafa;
+    color: #333;
+}
+
+.form-side input:focus {
+    outline: none;
+    border-color: #e83e8c;
+    box-shadow: 0 0 0 3px rgba(232, 62, 140, 0.15);
+    background: white;
+}
+
+.form-side input::placeholder {
+    color: #999;
+}
+
+.password-toggle {
+    position: relative;
+}
+
+.password-toggle i {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #999;
+    font-size: 16px;
+    transition: color 0.2s;
+    padding: 5px;
+    z-index: 2;
+}
+
+.password-toggle i:hover {
+    color: #e83e8c;
+}
+
+.login-button {
+    width: 100%;
+    padding: 12px;
+    background: #e83e8c;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 4px 12px rgba(232, 62, 140, 0.2);
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 1.3s forwards;
+}
+
+.login-button:hover:not(:disabled) {
+    background: #d63384;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(232, 62, 140, 0.3);
+}
+
+.login-button:disabled {
+    background: #e0e0e0;
+    color: #aaa;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.message {
+    margin-top: 20px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0;
+    transition: all 0.3s ease;
+    max-height: 0;
+    overflow: hidden;
+}
+
+.message.show {
+    opacity: 1;
+    max-height: 100px;
+    margin-top: 20px;
+}
+
+.message.success {
+    background: #e6f4ea;
+    color: #137333;
+    border: 1px solid #81c393;
+}
+
+.message.error {
+    background: #fce8e6;
+    color: #c5221f;
+    border: 1px solid #e7b5b2;
+}
+
+/* ============================================
+STYLE UNTUK HALAMAN REGISTER
+============================================ */
+
+/* Body untuk halaman register */
+body.register-page {
+    display: flex;
+    min-height: 100vh;
+    background: #f9f9f9 !important;
+    overflow-x: hidden;
+}
+
+/* Logo container di halaman register */
+.register-logo-container {
+    text-align: center;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.register-logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #e83e8c;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+.register-tagline {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+    text-align: center;
+    width: 100%;
+}
+
+.register-location {
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+    text-align: center;
+    width: 100%;
+}
+
+.register-icon {
+    font-size: 48px;
+    color: #e83e8c;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Step indicator */
+.step-indicator {
+    text-align: center;
+    margin: 20px 0 40px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+}
+
+.step-indicator span {
+    background: #fdeff2;
+    color: #e83e8c;
+    padding: 6px 20px;
+    border-radius: 30px;
+    display: inline-block;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Form title */
+.form-title {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-subtitle {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Form group untuk register */
+.register-page .form-group {
+    margin-bottom: 24px;
+    position: relative;
+}
+
+/* Password wrapper */
+.password-wrapper {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #999;
+    font-size: 16px;
+    z-index: 2;
+}
+
+.toggle-password:hover {
+    color: #e83e8c;
+}
+
+/* Password requirements */
+.password-requirements {
+    font-size: 12px;
+    color: #666;
+    margin-top: 6px;
+    line-height: 1.4;
+}
+
+.requirement {
+    display: block;
+    margin-bottom: 3px;
+}
+
+.requirement.valid {
+    color: #27ae60;
+}
+
+.requirement.invalid {
+    color: #e74c3c;
+}
+
+/* Input dan select untuk register */
+.register-page input,
+.register-page select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 14px;
+    background: #fafafa;
+    transition: all 0.3s;
+    color: #333;
+}
+
+.register-page input:focus,
+.register-page select:focus {
+    outline: none;
+    border-color: #e83e8c;
+    box-shadow: 0 0 0 3px rgba(232, 62, 140, 0.12);
+    background: white;
+}
+
+.register-page input::placeholder {
+    color: #999;
+}
+
+/* Input row */
+.input-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.input-row>div {
+    flex: 1;
+}
+
+/* Gender selector */
+.gender-selector {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.gender-btn {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    background: #fafafa;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.gender-btn:hover {
+    background: #f0f0f0;
+}
+
+.gender-btn.selected {
+    border-color: #e83e8c;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(232, 62, 140, 0.12);
+}
+
+/* Pet list */
+.pet-list {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+}
+
+.pet-item {
+    background: #fafafa;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.pet-item .remove-pet {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.pet-item .remove-pet:hover {
+    color: #e83e8c;
+}
+
+/* Add pet button */
+.add-pet-btn {
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    color: #e83e8c;
+    border: 2px dashed #e83e8c;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+    margin: 20px 0 30px;
+}
+
+.add-pet-btn:hover {
+    background: rgba(232, 62, 140, 0.05);
+}
+
+/* Buttons untuk register */
+.register-page button {
+    width: 100%;
+    padding: 14px;
+    background: #e83e8c;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 4px 12px rgba(232, 62, 140, 0.2);
+}
+
+.register-page button:hover:not(:disabled) {
+    background: #d63384;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(232, 62, 140, 0.25);
+}
+
+.register-page button:disabled {
+    background: #e0e0e0;
+    color: #aaa;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Navigation buttons */
+.nav-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.nav-buttons button {
+    flex: 1;
+}
+
+/* Button variants */
+.btn-primary {
+    background: #e83e8c !important;
+    color: white !important;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: #d63384 !important;
+}
+
+.btn-secondary {
+    background: #f0f0f0 !important;
+    color: #555 !important;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: #e0e0e0 !important;
+}
+
+/* Pet warning */
+.pet-warning {
+    background: #fff3cd;
+    color: #856404;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ffeaa7;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.pet-warning i {
+    font-size: 18px;
+    margin-right: 10px;
+    color: #e74c3c;
+}
+
+.pet-warning strong {
+    color: #e74c3c;
+}
+
+/* Login link */
+.login-link {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 14px;
+    color: #666;
+}
+
+.login-link a {
+    color: #e83e8c;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+
+/* ============================================
+STYLE UNTUK HALAMAN LAYANAN KAMI
+============================================ */
+
+/* CSS Variables untuk konsistensi */
+:root {
+    --primary: #e83e8c;
+    --primary-light: #f8bbd9;
+    --primary-dark: #d63384;
+    --secondary: #6c757d;
+    --accent: #ffc107;
+    --dark: #2D3748;
+    --light: #F8F9FA;
+    --gray: #6c757d;
+    --gray-light: #e9ecef;
+    --white: #ffffff;
+    --gradient: linear-gradient(135deg, #e83e8c 0%, #d63384 100%);
+    --gradient-light: linear-gradient(135deg, #f8bbd9 0%, #e83e8c 100%);
+    --shadow: 0 4px 12px rgba(232, 62, 140, 0.15);
+    --shadow-lg: 0 10px 30px rgba(232, 62, 140, 0.2);
+}
+
+/* General Styles untuk halaman Layanan Kami */
+.services-page {
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.7;
+    overflow-x: hidden;
+    background-color: var(--light);
+    color: var(--dark);
+}
+
+/* Override header untuk halaman Layanan Kami */
+.services-page header {
+    background: var(--white) !important;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08) !important;
+    border: 1px solid var(--gray-light) !important;
+}
+
+.services-page .logo-text,
+.services-page .nav-links a,
+.services-page .header-right {
+    color: var(--dark) !important;
+}
+
+.services-page .nav-links a:hover {
+    color: var(--primary) !important;
+    background: rgba(232, 62, 140, 0.1);
+}
+
+.services-page .btn-login {
+    color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+
+/* Hero Banner untuk halaman Layanan Kami - PERBAIKAN UTAMA */
+.services-page .hero-banner {
+    background: var(--gradient);
+    color: white;
+    padding: 180px 0 100px;
+    /* Tambah padding atas lebih banyak */
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin-top: 0;
+    /* Pastikan tidak ada margin */
+}
+
+.services-page .hero-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,0 1000,1000"/></svg>');
+}
+
+.services-page .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.services-page .hero-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 8px 20px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.services-page .hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.services-page .hero-description {
+    font-size: 1.2rem;
+    opacity: 0.95;
+    max-width: 600px;
+    margin: 0 auto 30px;
+    font-weight: 400;
+}
+
+/* Services Section */
+.services-page .services-section {
+    padding: 80px 0;
+    background: var(--white);
+}
+
+.services-page .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.services-page .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.services-page .section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    color: var(--primary);
+}
+
+.services-page .section-subtitle {
+    font-size: 1.1rem;
+    color: var(--gray);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Service Cards */
+.services-page .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.services-page .service-card {
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    border: 1px solid var(--gray-light);
+}
+
+.services-page .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+
+.services-page .service-image {
+    height: 200px;
+    background: var(--gradient-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.services-page .service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.services-page .service-content {
+    padding: 25px;
+}
+
+.services-page .service-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--dark);
+}
+
+.services-page .service-description {
+    color: var(--gray);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.services-page .service-features {
+    list-style: none;
+    margin-bottom: 25px;
+}
+
+.services-page .service-features li {
+    padding: 6px 0;
+    color: var(--dark);
+    position: relative;
+    padding-left: 25px;
+}
+
+.services-page .service-features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.services-page .service-price {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+.services-page .service-cta {
+    display: inline-block;
+    background: var(--gradient);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-align: center;
+}
+
+.services-page .service-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+/* Service Categories */
+.services-page .categories-section {
+    padding: 80px 0;
+    background: var(--light);
+}
+
+.services-page .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.services-page .category-card {
+    background: var(--white);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.services-page .category-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-5px);
+}
+
+.services-page .category-icon {
+    width: 70px;
+    height: 70px;
+    background: var(--gradient-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 1.8rem;
+    color: white;
+}
+
+.services-page .category-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--dark);
+}
+
+.services-page .category-description {
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+/* CTA Section */
+.services-page .cta-section {
+    padding: 80px 0;
+    background: var(--gradient);
+    color: white;
+    text-align: center;
+}
+
+.services-page .cta-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.services-page .cta-description {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+.services-page .cta-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.services-page .btn-primary {
+    background: white;
+    color: var(--primary);
+    padding: 12px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid white;
+}
+
+.services-page .btn-primary:hover {
+    background: transparent;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.services-page .btn-secondary {
+    background: transparent;
+    color: white;
+    padding: 12px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.services-page .btn-secondary:hover {
+    background: white;
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+/* FAQ Section */
+.services-page .faq-section {
+    padding: 80px 0;
+    background: var(--white);
+}
+
+.services-page .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.services-page .faq-item {
+    background: var(--light);
+    border-radius: 10px;
+    padding: 25px;
+    border-left: 4px solid var(--primary);
+}
+
+.services-page .faq-question {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--dark);
+}
+
+.services-page .faq-answer {
+    color: var(--gray);
+    line-height: 1.6;
+}
+
+/* Responsive Design untuk halaman Layanan Kami */
+@media (max-width: 768px) {
+    .services-page .hero-banner {
+        padding: 160px 0 80px;
+        /* Sesuaikan padding untuk mobile */
+    }
+
+    .services-page .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .services-page .hero-description {
+        font-size: 1.1rem;
+    }
+
+    .services-page .section-title {
+        font-size: 2rem;
+    }
+
+    .services-page .services-grid,
+    .services-page .categories-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .services-page .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .services-page .btn-primary,
+    .services-page .btn-secondary {
+        width: 100%;
+        max-width: 280px;
+    }
+}
+
+@media (max-width: 480px) {
+    .services-page .hero-banner {
+        padding: 140px 0 60px;
+    }
+
+    .services-page .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .services-page .section-title {
+        font-size: 1.8rem;
+    }
+
+    .services-page .service-content {
+        padding: 20px;
+    }
+
+    .services-page .category-card {
+        padding: 20px;
+    }
+}
+
+/* Responsif untuk semua halaman */
+@media (max-width: 768px) {
+
+    /* Header responsif */
+    header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .header-right {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .nav-links {
+        order: 2;
+        margin-top: 10px;
+    }
+
+    /* Login responsif */
+    body.login-page {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .logo-text {
+        font-size: 24px;
+    }
+
+    .login-icon {
+        font-size: 40px;
+    }
+
+    .toggle-btn {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .image-side,
+    .form-side {
+        width: 100%;
+        height: auto;
+        padding: 30px 20px;
+    }
+
+    .image-side {
+        height: 250px;
+    }
+
+    .form-side {
+        padding: 30px 20px;
+    }
+
+    /* Hero responsif */
+    .hero-logo {
+        font-size: 38px;
+    }
+
+    .fish-eye-menu {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-side {
+        padding: 20px 15px;
+    }
+
+    .logo-text {
+        font-size: 22px;
+    }
+
+    .login-icon {
+        font-size: 36px;
+        margin: 15px 0;
+    }
+
+    .nav-links {
+        gap: 10px;
+    }
+
+    .nav-links a {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+}
+
+/* Responsif untuk register */
+@media (max-width: 768px) {
+    body.register-page {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .register-logo {
+        font-size: 24px;
+    }
+
+    .register-icon {
+        font-size: 40px;
+    }
+
+    .input-row {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .nav-buttons {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .register-logo {
+        font-size: 22px;
+    }
+
+    .register-icon {
+        font-size: 36px;
+        margin: 15px 0;
+    }
+
+    .form-title {
+        font-size: 20px;
+    }
+
+    .form-subtitle {
+        font-size: 13px;
+    }
+}
+
+/* Animation untuk form register */
+.step-form {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: formSlideUp 0.6s ease-out forwards;
+}
+
+@keyframes formSlideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Counter styles */
+.input-valid {
+    border-color: #27ae60 !important;
+}
+
+.input-warning {
+    border-color: #f39c12 !important;
+}
+
+.input-invalid {
+    border-color: #e74c3c !important;
+}
+
+/* Logo link untuk semua halaman */
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.logo-link:hover {
+    transform: scale(1.02);
+    text-decoration: none;
+}
+
+.logo-link:hover .logo-text,
+.logo-link:hover .register-logo,
+.logo-link:hover .login-logo {
+    color: #d63384;
+}
+
+.logo-link:hover .icon i,
+.logo-link:hover .register-icon i,
+.logo-link:hover .login-icon i {
+    transform: scale(1.1);
+}
+
+/* ============================================
+STYLE UNTUK HALAMAN FAQ
+============================================ */
+
+/* Variables khusus untuk halaman FAQ */
+:root {
+    --faq-primary: #e83e8c;
+    --faq-secondary: #c0b7b6ff;
+    --faq-accent: #4CAF50;
+    --faq-light: #F8F9FA;
+    --faq-dark: #333333;
+    --faq-gray: #6C757D;
+}
+
+/* Override header untuk halaman FAQ - menggunakan class spesifik */
+body.faq-page header {
+    background: white !important;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08) !important;
+    border: 1px solid #e9ecef !important;
+}
+
+body.faq-page .logo-text,
+body.faq-page .nav-links a,
+body.faq-page .header-right {
+    color: #333 !important;
+}
+
+body.faq-page .nav-links a:hover {
+    color: #e83e8c !important;
+    background: rgba(232, 62, 140, 0.1);
+}
+
+body.faq-page .btn-login {
+    color: #e83e8c !important;
+    border-color: #e83e8c !important;
+}
+
+/* Container untuk halaman FAQ */
+.faq-page .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Hero Section untuk halaman FAQ */
+.faq-page section.hero {
+    background: linear-gradient(135deg, rgba(231, 51, 123, 0.9) 0%, rgba(175, 76, 149, 0.8) 100%), url('https://images.unsplash.com/photo-1450778869180-41d0601e046e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1150&q=80') no-repeat center center;
+    background-size: cover;
+    color: white;
+    padding: 150px 0 100px;
+    text-align: center;
+    margin-bottom: 80px;
+    border-radius: 0 0 20px 20px;
+    margin-top: 0;
+}
+
+.faq-page section.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.faq-page section.hero p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto 30px;
+    opacity: 0.95;
+    font-weight: 400;
+}
+
+/* Section title untuk halaman FAQ */
+.faq-page .section-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    color: var(--faq-dark);
+    font-weight: 700;
+}
+
+.faq-page .section-subtitle {
+    text-align: center;
+    margin-bottom: 60px;
+    color: var(--faq-gray);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.1rem;
+}
+
+/* Search box untuk halaman FAQ */
+.faq-page .search-box {
+    max-width: 600px;
+    margin: 0 auto 50px;
+    position: relative;
+}
+
+.faq-page .search-box input {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid #eaeaea;
+    border-radius: 50px;
+    font-size: 16px;
+    transition: all 0.3s;
+    padding-right: 50px;
+}
+
+.faq-page .search-box input:focus {
+    border-color: var(--faq-primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(232, 62, 140, 0.1);
+}
+
+.faq-page .search-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--faq-gray);
+    font-size: 18px;
+}
+
+.faq-page .search-results {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--faq-gray);
+    font-style: italic;
+}
+
+.faq-page .highlight {
+    background-color: #fff3cd;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+.faq-page .no-results {
+    text-align: center;
+    padding: 40px;
+    color: var(--faq-gray);
+    font-style: italic;
+    display: none;
+}
+
+/* FAQ Container */
+.faq-page .faq-container {
+    max-width: 900px;
+    margin: 0 auto 80px;
+}
+
+.faq-page .faq-item {
+    background-color: white;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: all 0.3s;
+    border-left: 4px solid var(--faq-primary);
+}
+
+.faq-page .faq-item:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+}
+
+.faq-page .faq-question {
+    padding: 25px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: background-color 0.3s;
+    color: var(--faq-dark);
+}
+
+.faq-page .faq-question:hover {
+    background-color: rgba(232, 62, 140, 0.05);
+}
+
+.faq-page .faq-question i {
+    color: var(--faq-primary);
+    transition: transform 0.3s;
+}
+
+.faq-page .faq-answer {
+    padding: 0 25px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s ease-out;
+    color: var(--faq-gray);
+    line-height: 1.7;
+}
+
+.faq-page .faq-item.active .faq-answer {
+    padding: 0 25px 25px;
+    max-height: 500px;
+}
+
+.faq-page .faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
+
+/* Contact Section untuk halaman FAQ */
+.faq-page .contact-section {
+    background-color: white;
+    border-radius: 15px;
+    padding: 50px;
+    box-shadow: 0 10px 30px rgba(232, 62, 140, 0.05);
+    margin-bottom: 80px;
+    text-align: center;
+}
+
+.faq-page .contact-section h2 {
+    margin-bottom: 15px;
+    color: var(--faq-dark);
+}
+
+.faq-page .contact-section p {
+    color: var(--faq-gray);
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.faq-page .contact-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.faq-page .contact-btn {
+    display: flex;
+    align-items: center;
+    background-color: var(--faq-light);
+    padding: 15px 25px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--faq-dark);
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.faq-page .contact-btn:hover {
+    background-color: var(--faq-primary);
+    color: white;
+    transform: translateY(-3px);
+}
+
+.faq-page .contact-btn i {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+/* Responsive untuk halaman FAQ */
+@media (max-width: 768px) {
+    .faq-page section.hero {
+        padding: 130px 0 80px;
+        margin-bottom: 60px;
+    }
+
+    .faq-page section.hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .faq-page .section-title {
+        font-size: 2rem;
+    }
+
+    .faq-page .faq-question {
+        padding: 20px;
+        font-size: 1rem;
+    }
+
+    .faq-page .faq-answer {
+        padding: 0 20px;
+    }
+
+    .faq-page .faq-item.active .faq-answer {
+        padding: 0 20px 20px;
+    }
+
+    .faq-page .contact-section {
+        padding: 30px;
+    }
+
+    .faq-page .contact-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .faq-page .contact-btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .faq-page section.hero {
+        padding: 120px 0 60px;
+    }
+
+    .faq-page section.hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .faq-page .section-title {
+        font-size: 1.8rem;
+    }
+
+    .faq-page .faq-question {
+        padding: 15px;
+        font-size: 0.95rem;
+    }
+
+    .faq-page .faq-answer {
+        padding: 0 15px;
+    }
+
+    .faq-page .faq-item.active .faq-answer {
+        padding: 0 15px 15px;
+    }
+}
+
+/* ============================================
+STYLE UNTUK HALAMAN JADWAL KE KLINIK
+============================================ */
+
+/* Variables khusus untuk halaman Jadwal ke Klinik */
+:root {
+    --primary: #e83e8c;
+    --secondary: #c0b7b6ff;
+    --primary-light: #d63384;
+    --accent: #4CAF50;
+    --light: #F8F9FA;
+    --dark: #333333;
+    --gray: #6C757D;
+    --light-gray: #E9ECEF;
+    --white: #FFFFFF;
+}
+
+/* Override header untuk halaman Jadwal ke Klinik */
+body.schedule-clinic-page header {
+    background-color: white !important;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08) !important;
+    border: 1px solid #e9ecef !important;
+}
+
+body.schedule-clinic-page .logo-text,
+body.schedule-clinic-page .nav-links a,
+body.schedule-clinic-page .header-right {
+    color: #333 !important;
+}
+
+body.schedule-clinic-page .nav-links a:hover {
+    color: #e83e8c !important;
+    background: rgba(232, 62, 140, 0.1);
+}
+
+body.schedule-clinic-page .btn-login {
+    color: #e83e8c !important;
+    border-color: #e83e8c !important;
+}
+
+/* Main container untuk halaman Jadwal ke Klinik */
+.schedule-clinic-page .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.schedule-clinic-page .main-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 30px;
+    margin: 40px 0;
+}
+
+/* Sidebar styles */
+.schedule-clinic-page .sidebar {
+    background-color: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    align-self: start;
+    position: sticky;
+    top: 120px;
+}
+
+.schedule-clinic-page .sidebar-title {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: var(--dark);
+    font-weight: 600;
+}
+
+.schedule-clinic-page .sidebar-menu {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.schedule-clinic-page .sidebar-menu li {
+    margin-bottom: 15px;
+}
+
+.schedule-clinic-page .sidebar-menu a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--gray);
+    transition: all 0.3s;
+    padding: 8px 0;
+}
+
+.schedule-clinic-page .sidebar-menu a:hover,
+.schedule-clinic-page .sidebar-menu a.active {
+    color: var(--primary);
+}
+
+.schedule-clinic-page .sidebar-menu i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.schedule-clinic-page .sidebar-divider {
+    height: 1px;
+    background-color: var(--light-gray);
+    margin: 20px 0;
+}
+
+/* Content styles */
+.schedule-clinic-page .content {
+    background-color: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.schedule-clinic-page .page-header {
+    margin-bottom: 30px;
+}
+
+.schedule-clinic-page .page-title {
+    font-size: 2rem;
+    color: var(--dark);
+    margin-bottom: 10px;
+}
+
+/* Filter section */
+.schedule-clinic-page .filter-section {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.schedule-clinic-page .filter-select {
+    padding: 12px 15px;
+    border: 1px solid var(--light-gray);
+    border-radius: 8px;
+    background-color: white;
+    font-size: 14px;
+    min-width: 200px;
+    cursor: pointer;
+}
+
+.schedule-clinic-page .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--dark);
+    font-weight: 600;
+}
+
+/* Doctor list */
+.schedule-clinic-page .doctor-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.schedule-clinic-page .doctor-card {
+    background-color: var(--light);
+    border-radius: 15px;
+    padding: 25px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.schedule-clinic-page .doctor-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+}
+
+.schedule-clinic-page .doctor-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(232, 62, 140, 0.15);
+    border-color: var(--primary);
+}
+
+.schedule-clinic-page .doctor-header {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.schedule-clinic-page .doctor-image {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background-color: #eaeaea;
+    background-size: cover;
+    background-position: center;
+    margin-right: 20px;
+    flex-shrink: 0;
+    border: 3px solid var(--primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.schedule-clinic-page .doctor-info {
+    flex: 1;
+}
+
+.schedule-clinic-page .doctor-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--dark);
+}
+
+.schedule-clinic-page .doctor-specialty {
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.schedule-clinic-page .doctor-experience {
+    color: var(--gray);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.schedule-clinic-page .doctor-experience i {
+    color: var(--primary);
+}
+
+.schedule-clinic-page .contact-info {
+    color: var(--gray);
+    font-size: 14px;
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.schedule-clinic-page .contact-info span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.schedule-clinic-page .contact-info i {
+    color: var(--primary);
+    width: 16px;
+}
+
+.schedule-clinic-page .doctor-card-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.schedule-clinic-page .doctor-main-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.schedule-clinic-page .doctor-additional-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.schedule-clinic-page .doctor-details {
+    margin-bottom: 20px;
+}
+
+.schedule-clinic-page .doctor-specialization {
+    background: linear-gradient(135deg, rgba(232, 62, 140, 0.1), rgba(214, 51, 132, 0.1));
+    color: var(--primary);
+    padding: 12px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    border-left: 4px solid var(--primary);
+    margin-bottom: 15px;
+}
+
+.schedule-clinic-page .schedule-info {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(56, 142, 60, 0.08));
+    color: var(--accent);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+    border-left: 4px solid var(--accent);
+}
+
+.schedule-clinic-page .schedule-info strong {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.schedule-clinic-page .schedule-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 5px 0;
+}
+
+.schedule-clinic-page .schedule-day {
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.schedule-clinic-page .schedule-time {
+    color: var(--dark);
+    font-weight: 500;
+}
+
+.schedule-clinic-page .queue-info {
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.1), rgba(255, 152, 0, 0.1));
+    color: #ff9800;
+    padding: 12px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+    border-left: 4px solid #ff9800;
+}
+
+.schedule-clinic-page .availability-info {
+    background: linear-gradient(135deg, rgba(33, 150, 243, 0.1), rgba(30, 136, 229, 0.1));
+    color: #2196f3;
+    padding: 12px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 15px;
+    border-left: 4px solid #2196f3;
+}
+
+.schedule-clinic-page .doctor-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    gap: 15px;
+}
+
+.schedule-clinic-page .schedule-button {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.schedule-clinic-page .schedule-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(232, 62, 140, 0.4);
+}
+
+/* Service highlight */
+.schedule-clinic-page .service-highlight {
+    background: linear-gradient(135deg, rgba(156, 39, 176, 0.1), rgba(156, 39, 176, 0.05));
+    border: 1px solid rgba(156, 39, 176, 0.2);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px 0;
+    text-align: center;
+}
+
+.schedule-clinic-page .service-highlight i {
+    color: #9c27b0;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.schedule-clinic-page .service-highlight strong {
+    color: #9c27b0;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.schedule-clinic-page .filter-results {
+    margin-bottom: 20px;
+    color: var(--gray);
+    font-size: 14px;
+}
+
+/* No doctors message */
+.schedule-clinic-page .no-doctors {
+    text-align: center;
+    padding: 40px;
+    color: var(--gray);
+    font-size: 1.1rem;
+}
+
+.schedule-clinic-page .no-doctors i {
+    font-size: 3rem;
+    color: var(--light-gray);
+    margin-bottom: 15px;
+    display: block;
+}
+
+/* Incompatible pet popup */
+.schedule-clinic-page .incompatible-pet-popup {
+    animation: fadeIn 0.3s ease;
+}
+
+.schedule-clinic-page .incompatible-pet-popup>div {
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.schedule-clinic-page .incompatible-pet-popup button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(232, 62, 140, 0.3);
+}
+
+/* Responsive design untuk halaman Jadwal ke Klinik */
+@media (max-width: 992px) {
+    .schedule-clinic-page .main-container {
+        grid-template-columns: 1fr;
+    }
+
+    .schedule-clinic-page .sidebar {
+        position: static;
+    }
+
+    .schedule-clinic-page .doctor-card-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .schedule-clinic-page .doctor-list {
+        grid-template-columns: 1fr;
+    }
+
+    .schedule-clinic-page .filter-section {
+        flex-direction: column;
+    }
+
+    .schedule-clinic-page .filter-select {
+        width: 100%;
+    }
+
+    .schedule-clinic-page .doctor-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .schedule-clinic-page .doctor-image {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .schedule-clinic-page .doctor-actions {
+        flex-direction: column;
+    }
+
+    .schedule-clinic-page .schedule-button {
+        width: 100%;
+    }
+}
+
+/* Responsif untuk semua halaman */
+@media (max-width: 768px) {
+
+    /* Header responsif */
+    header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .header-right {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .nav-links {
+        order: 2;
+        margin-top: 10px;
+    }
+
+    /* Login responsif */
+    body.login-page {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .logo-text {
+        font-size: 24px;
+    }
+
+    .login-icon {
+        font-size: 40px;
+    }
+
+    .toggle-btn {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .image-side,
+    .form-side {
+        width: 100%;
+        height: auto;
+        padding: 30px 20px;
+    }
+
+    .image-side {
+        height: 250px;
+    }
+
+    .form-side {
+        padding: 30px 20px;
+    }
+
+    /* Hero responsif */
+    .hero-logo {
+        font-size: 38px;
+    }
+
+    .fish-eye-menu {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-side {
+        padding: 20px 15px;
+    }
+
+    .logo-text {
+        font-size: 22px;
+    }
+
+    .login-icon {
+        font-size: 36px;
+        margin: 15px 0;
+    }
+
+    .nav-links {
+        gap: 10px;
+    }
+
+    .nav-links a {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+}
+
+/* Responsif untuk register */
+@media (max-width: 768px) {
+    body.register-page {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .register-logo {
+        font-size: 24px;
+    }
+
+    .register-icon {
+        font-size: 40px;
+    }
+
+    .input-row {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .nav-buttons {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .register-logo {
+        font-size: 22px;
+    }
+
+    .register-icon {
+        font-size: 36px;
+        margin: 15px 0;
+    }
+
+    .form-title {
+        font-size: 20px;
+    }
+
+    .form-subtitle {
+        font-size: 13px;
+    }
+}
+
+/* Animation untuk form register */
+.step-form {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: formSlideUp 0.6s ease-out forwards;
+}
+
+@keyframes formSlideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Counter styles */
+.input-valid {
+    border-color: #27ae60 !important;
+}
+
+.input-warning {
+    border-color: #f39c12 !important;
+}
+
+.input-invalid {
+    border-color: #e74c3c !important;
+}
+
+/* Logo link untuk semua halaman */
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.logo-link:hover {
+    transform: scale(1.02);
+    text-decoration: none;
+}
+
+.logo-link:hover .logo-text,
+.logo-link:hover .register-logo,
+.logo-link:hover .login-logo {
+    color: #d63384;
+}
+
+.logo-link:hover .icon i,
+.logo-link:hover .register-icon i,
+.logo-link:hover .login-icon i {
+    transform: scale(1.1);
+}
+
+/* ============================================
+STYLE UNTUK HALAMAN KONFIRMASI BOOKING
+============================================ */
+
+/* Variables khusus untuk halaman Konfirmasi Booking */
+:root {
+    --primary: #e83e8c;
+    --secondary: #c0b7b6ff;
+    --accent: #4CAF50;
+    --light: #F8F9FA;
+    --dark: #333333;
+    --gray: #6C757D;
+    --light-gray: #E9ECEF;
+    --white: #FFFFFF;
+}
+
+/* Override header untuk halaman Konfirmasi Booking */
+body.booking-confirmation-page header {
+    background-color: white !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08) !important;
+    border: 1px solid #e9ecef !important;
+}
+
+body.booking-confirmation-page .logo-text,
+body.booking-confirmation-page .nav-links a,
+body.booking-confirmation-page .header-right {
+    color: #333 !important;
+}
+
+body.booking-confirmation-page .nav-links a:hover {
+    color: #e83e8c !important;
+    background: rgba(232, 62, 140, 0.1);
+}
+
+body.booking-confirmation-page .btn-login {
+    color: #e83e8c !important;
+    border-color: #e83e8c !important;
+}
+
+/* Body styling untuk halaman Konfirmasi Booking */
+body.booking-confirmation-page {
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.5;
+    overflow-x: hidden;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Container untuk halaman Konfirmasi Booking */
+body.booking-confirmation-page .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Confirmation container */
+.booking-confirmation-page .confirmation-container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 80px 15px 30px;
+}
+
+/* Page title */
+.booking-confirmation-page .page-title {
+    font-size: 1.8rem;
+    color: var(--dark);
+    margin-bottom: 8px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.booking-confirmation-page .page-subtitle {
+    color: var(--gray);
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+/* Confirmation card */
+.booking-confirmation-page .confirmation-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    border: 2px solid var(--primary);
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 0.6s ease forwards;
+}
+
+.booking-confirmation-page .confirmation-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+/* Success header */
+.booking-confirmation-page .success-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.booking-confirmation-page .success-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--accent), #45a049);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    color: white;
+    font-size: 2rem;
+}
+
+.booking-confirmation-page .success-title {
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.booking-confirmation-page .success-message {
+    color: var(--gray);
+    font-size: 1rem;
+}
+
+/* Queue number */
+.booking-confirmation-page .queue-number {
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary), #d81b60);
+    color: white;
+    padding: 25px;
+    border-radius: 15px;
+    margin: 25px 0;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+.booking-confirmation-page .queue-label {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    opacity: 0.9;
+}
+
+.booking-confirmation-page .queue-value {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+/* Doctor info */
+.booking-confirmation-page .doctor-info {
+    display: flex;
+    align-items: center;
+    background: var(--light);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.booking-confirmation-page .doctor-image {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    margin-right: 15px;
+    border: 3px solid var(--primary);
+}
+
+.booking-confirmation-page .doctor-details h4 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    color: var(--dark);
+}
+
+.booking-confirmation-page .doctor-specialty {
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.booking-confirmation-page .doctor-location {
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+/* Booking details */
+.booking-confirmation-page .booking-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.booking-confirmation-page .detail-section {
+    background: var(--light);
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 4px solid var(--primary);
+}
+
+.booking-confirmation-page .detail-section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.booking-confirmation-page .detail-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.booking-confirmation-page .detail-label {
+    color: var(--gray);
+    font-weight: 500;
+}
+
+.booking-confirmation-page .detail-value {
+    color: var(--dark);
+    font-weight: 600;
+}
+
+/* Instructions */
+.booking-confirmation-page .instructions {
+    background: linear-gradient(135deg, rgba(33, 150, 243, 0.1), rgba(30, 136, 229, 0.1));
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 4px solid #2196f3;
+    margin-bottom: 25px;
+}
+
+.booking-confirmation-page .instructions h3 {
+    color: #2196f3;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.booking-confirmation-page .instruction-list {
+    list-style: none;
+}
+
+.booking-confirmation-page .instruction-list li {
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+    color: var(--dark);
+}
+
+.booking-confirmation-page .instruction-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #2196f3;
+    font-weight: bold;
+}
+
+/* Buttons */
+.booking-confirmation-page .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: var(--primary);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.booking-confirmation-page .btn:hover {
+    background-color: #d81b60;
+    transform: translateY(-2px);
+}
+
+.booking-confirmation-page .btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+
+.booking-confirmation-page .btn-outline:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.booking-confirmation-page .btn-large {
+    padding: 12px 25px;
+    font-size: 1rem;
+    border-radius: 10px;
+}
+
+/* Action buttons */
+.booking-confirmation-page .action-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+/* Status badge */
+.booking-confirmation-page .status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.booking-confirmation-page .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 25px;
+}
+
+.booking-confirmation-page .footer-column h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.booking-confirmation-page .footer-column h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 35px;
+    height: 2px;
+    background-color: var(--primary);
+}
+
+.booking-confirmation-page .footer-column p {
+    color: #bbb;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.booking-confirmation-page .footer-column ul {
+    list-style: none;
+}
+
+.booking-confirmation-page .footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.booking-confirmation-page .footer-column ul li a {
+    color: #bbb;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 0.9rem;
+}
+
+.booking-confirmation-page .footer-column ul li a:hover {
+    color: var(--primary);
+}
+
+.booking-confirmation-page .social-links {
+    display: flex;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.booking-confirmation-page .social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.booking-confirmation-page .social-links a:hover {
+    background-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.booking-confirmation-page .copyright {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #bbb;
+    font-size: 0.85rem;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive design untuk halaman Konfirmasi Booking */
+@media (max-width: 768px) {
+    .booking-confirmation-page .booking-details {
+        grid-template-columns: 1fr;
+    }
+
+    .booking-confirmation-page .action-buttons {
+        flex-direction: column;
+    }
+
+    .booking-confirmation-page .btn-large {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .booking-confirmation-page .doctor-info {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .booking-confirmation-page .doctor-image {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+}
+
+/* Responsif untuk semua halaman */
+@media (max-width: 768px) {
+
+    /* Header responsif */
+    header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .header-right {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .nav-links {
+        order: 2;
+        margin-top: 10px;
+    }
+
+    /* Login responsif */
+    body.login-page {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .logo-text {
+        font-size: 24px;
+    }
+
+    .login-icon {
+        font-size: 40px;
+    }
+
+    .toggle-btn {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .image-side,
+    .form-side {
+        width: 100%;
+        height: auto;
+        padding: 30px 20px;
+    }
+
+    .image-side {
+        height: 250px;
+    }
+
+    .form-side {
+        padding: 30px 20px;
+    }
+
+    /* Hero responsif */
+    .hero-logo {
+        font-size: 38px;
+    }
+
+    .fish-eye-menu {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-side {
+        padding: 20px 15px;
+    }
+
+    .logo-text {
+        font-size: 22px;
+    }
+
+    .login-icon {
+        font-size: 36px;
+        margin: 15px 0;
+    }
+
+    .nav-links {
+        gap: 10px;
+    }
+
+    .nav-links a {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+}
+
+/* Responsif untuk register */
+@media (max-width: 768px) {
+    body.register-page {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .register-logo {
+        font-size: 24px;
+    }
+
+    .register-icon {
+        font-size: 40px;
+    }
+
+    .input-row {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .nav-buttons {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .register-logo {
+        font-size: 22px;
+    }
+
+    .register-icon {
+        font-size: 36px;
+        margin: 15px 0;
+    }
+
+    .form-title {
+        font-size: 20px;
+    }
+
+    .form-subtitle {
+        font-size: 13px;
+    }
+}
+
+/* Animation untuk form register */
+.step-form {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: formSlideUp 0.6s ease-out forwards;
+}
+
+@keyframes formSlideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Counter styles */
+.input-valid {
+    border-color: #27ae60 !important;
+}
+
+.input-warning {
+    border-color: #f39c12 !important;
+}
+
+.input-invalid {
+    border-color: #e74c3c !important;
+}
+
+/* Logo link untuk semua halaman */
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.logo-link:hover {
+    transform: scale(1.02);
+    text-decoration: none;
+}
+
+.logo-link:hover .logo-text,
+.logo-link:hover .register-logo,
+.logo-link:hover .login-logo {
+    color: #d63384;
+}
+
+.logo-link:hover .icon i,
+.logo-link:hover .register-icon i,
+.logo-link:hover .login-icon i {
+    transform: scale(1.1);
+}
+
+/* ============================================
+STYLE UNTUK HALAMAN PEMESANAN KLINIK (B_pemesanan_klinik.php)
+============================================ */
+
+/* Variables khusus untuk halaman Pemesanan Klinik */
+:root {
+    --primary: #e83e8c;
+    --primary-light: #f8bbd9;
+    --primary-dark: #d63384;
+    --accent: #e83e8c;
+    /* Tetap pink untuk konsistensi */
+    --light: #F8F9FA;
+    --dark: #333333;
+    --gray: #6C757D;
+    --light-gray: #E9ECEF;
+    --white: #FFFFFF;
+}
+
+/* Override header untuk halaman Pemesanan Klinik - Pink theme */
+body.pemesanan-klinik-page header {
+    background: rgba(255, 255, 255, 0.12) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(230, 89, 160, 0.3) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+}
+
+body.pemesanan-klinik-page .logo-text,
+body.pemesanan-klinik-page .nav-links a,
+body.pemesanan-klinik-page .header-right {
+    color: #e83e8c !important;
+}
+
+body.pemesanan-klinik-page .nav-links a:hover {
+    color: #e83e8c !important;
+    background: rgba(255, 105, 180, 0.15);
+}
+
+body.pemesanan-klinik-page .btn-login {
+    color: #e83e8c !important;
+    border-color: #e83e8c !important;
+}
+
+body.pemesanan-klinik-page .btn-login:hover {
+    background: rgba(255, 105, 180, 0.1);
+}
+
+/* Main container untuk halaman Pemesanan Klinik */
+.pemesanan-klinik-page .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.pemesanan-klinik-page .main-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+    margin: 20px 0;
+    padding-top: 40px;
+    /* Tambahkan padding untuk header fixed */
+}
+
+/* Doctor Info Sidebar */
+.pemesanan-klinik-page .doctor-info-sidebar {
+    background-color: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(232, 62, 140, 0.2);
+    align-self: start;
+    position: sticky;
+    top: 140px;
+    /* Adjusted for fixed header */
+    height: fit-content;
+}
+
+.pemesanan-klinik-page .doctor-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(232, 62, 140, 0.1);
+}
+
+.pemesanan-klinik-page .doctor-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #eaeaea;
+    background-size: cover;
+    background-position: center;
+    margin-right: 15px;
+    flex-shrink: 0;
+    border: 3px solid var(--primary);
+    box-shadow: 0 4px 12px rgba(232, 62, 140, 0.2);
+}
+
+.pemesanan-klinik-page .doctor-details h3 {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    color: var(--primary);
+}
+
+.pemesanan-klinik-page .doctor-specialty {
+    color: var(--primary-dark);
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.pemesanan-klinik-page .info-item {
+    margin-bottom: 15px;
+    padding: 12px;
+    background: rgba(232, 62, 140, 0.05);
+    border-radius: 8px;
+    border-left: 4px solid var(--primary);
+}
+
+.pemesanan-klinik-page .info-item strong {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--primary-dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pemesanan-klinik-page .info-item p {
+    color: var(--dark);
+    font-size: 14px;
+}
+
+/* Booking Content */
+.pemesanan-klinik-page .booking-content {
+    background-color: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(232, 62, 140, 0.2);
+}
+
+.pemesanan-klinik-page .page-header {
+    margin-bottom: 30px;
+}
+
+.pemesanan-klinik-page .page-title {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 10px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.pemesanan-klinik-page .page-header p {
+    color: var(--gray);
+}
+
+/* Info Booking */
+.pemesanan-klinik-page .booking-info {
+    background: rgba(232, 62, 140, 0.08);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid var(--primary);
+    color: var(--primary-dark);
+}
+
+.pemesanan-klinik-page .booking-info i {
+    color: var(--primary);
+    margin-right: 8px;
+}
+
+.pemesanan-klinik-page .booking-info ul {
+    margin: 5px 0 0 20px;
+    font-size: 14px;
+    color: var(--dark);
+}
+
+.pemesanan-klinik-page .booking-info li {
+    margin-bottom: 5px;
+}
+
+/* Booking Steps */
+.pemesanan-klinik-page .booking-steps {
+    display: flex;
+    margin-bottom: 30px;
+    background: rgba(232, 62, 140, 0.05);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(232, 62, 140, 0.1);
+}
+
+.pemesanan-klinik-page .step {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    color: var(--gray);
+}
+
+.pemesanan-klinik-page .step.active {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.pemesanan-klinik-page .step.active .step-number {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    box-shadow: 0 4px 12px rgba(232, 62, 140, 0.3);
+}
+
+.pemesanan-klinik-page .step-number {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--light-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+/* Form Sections */
+.pemesanan-klinik-page .form-section {
+    margin-bottom: 30px;
+}
+
+.pemesanan-klinik-page .section-title {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: var(--primary-dark);
+    font-weight: 600;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(232, 62, 140, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* User Info Grid */
+.pemesanan-klinik-page .user-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.pemesanan-klinik-page .info-card {
+    background: rgba(232, 62, 140, 0.05);
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 4px solid var(--primary);
+    transition: all 0.3s ease;
+}
+
+.pemesanan-klinik-page .info-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(232, 62, 140, 0.1);
+}
+
+.pemesanan-klinik-page .info-card h4 {
+    margin-bottom: 10px;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pemesanan-klinik-page .info-card p {
+    color: var(--dark);
+    font-size: 14px;
+}
+
+/* Pet Selection */
+.pemesanan-klinik-page .pet-selection {
+    margin-bottom: 25px;
+}
+
+.pemesanan-klinik-page .pet-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.pemesanan-klinik-page .pet-card {
+    background: rgba(232, 62, 140, 0.05);
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pemesanan-klinik-page .pet-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(232, 62, 140, 0.15);
+}
+
+.pemesanan-klinik-page .pet-card.selected {
+    border-color: var(--primary);
+    background: rgba(232, 62, 140, 0.1);
+    box-shadow: 0 4px 12px rgba(232, 62, 140, 0.2);
+}
+
+.pemesanan-klinik-page .pet-card h5 {
+    margin-bottom: 8px;
+    color: var(--primary-dark);
+}
+
+.pemesanan-klinik-page .pet-card p {
+    color: var(--dark);
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+/* Date Selection */
+.pemesanan-klinik-page .date-selection {
+    margin-bottom: 25px;
+}
+
+.pemesanan-klinik-page .date-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.pemesanan-klinik-page .date-option {
+    background: rgba(232, 62, 140, 0.05);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.pemesanan-klinik-page .date-option:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(232, 62, 140, 0.1);
+}
+
+.pemesanan-klinik-page .date-option.selected {
+    border-color: var(--primary);
+    background: rgba(232, 62, 140, 0.1);
+    box-shadow: 0 4px 12px rgba(232, 62, 140, 0.2);
+}
+
+.pemesanan-klinik-page .date-day {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--primary-dark);
+}
+
+.pemesanan-klinik-page .date-date {
+    font-size: 12px;
+    color: var(--gray);
+}
+
+.pemesanan-klinik-page .date-option .today-badge {
+    font-size: 10px;
+    color: var(--primary);
+    margin-top: 5px;
+    font-weight: 600;
+}
+
+/* Time Selection */
+.pemesanan-klinik-page .time-selection {
+    margin-bottom: 30px;
+}
+
+.pemesanan-klinik-page .time-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+}
+
+.pemesanan-klinik-page .time-option {
+    background: rgba(232, 62, 140, 0.05);
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    font-size: 14px;
+    color: var(--dark);
+}
+
+.pemesanan-klinik-page .time-option:hover:not(.booked):not(.disabled):not(.past):not(.unavailable) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(232, 62, 140, 0.1);
+}
+
+.pemesanan-klinik-page .time-option.booked {
+    background: rgba(232, 62, 140, 0.1);
+    color: var(--primary-dark);
+    cursor: not-allowed;
+    border: 2px solid rgba(232, 62, 140, 0.3);
+}
+
+.pemesanan-klinik-page .time-option.selected {
+    border-color: var(--primary);
+    background: rgba(232, 62, 140, 0.15);
+    color: var(--primary);
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(232, 62, 140, 0.2);
+}
+
+.pemesanan-klinik-page .time-option.disabled {
+    background: var(--light-gray);
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.pemesanan-klinik-page .time-option.past {
+    background: #f0f0f0 !important;
+    color: #999 !important;
+    cursor: not-allowed !important;
+    text-decoration: line-through;
+}
+
+.pemesanan-klinik-page .time-option.unavailable {
+    background: #ffe6e6 !important;
+    color: #cc0000 !important;
+    cursor: not-allowed !important;
+}
+
+/* Textarea */
+.pemesanan-klinik-page textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(232, 62, 140, 0.2);
+    border-radius: 8px;
+    resize: vertical;
+    min-height: 100px;
+    font-family: inherit;
+    background: rgba(232, 62, 140, 0.02);
+}
+
+.pemesanan-klinik-page textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(232, 62, 140, 0.1);
+    background: white;
+}
+
+.pemesanan-klinik-page textarea::placeholder {
+    color: var(--gray);
+}
+
+/* Form Actions */
+.pemesanan-klinik-page .form-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(232, 62, 140, 0.1);
+}
+
+.pemesanan-klinik-page .btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: inherit;
+}
+
+.pemesanan-klinik-page .btn-back {
+    background: rgba(232, 62, 140, 0.05);
+    color: var(--primary);
+    border: 2px solid rgba(232, 62, 140, 0.3);
+}
+
+.pemesanan-klinik-page .btn-back:hover {
+    background: rgba(232, 62, 140, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(232, 62, 140, 0.2);
+}
+
+.pemesanan-klinik-page .btn-submit {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    box-shadow: 0 4px 12px rgba(232, 62, 140, 0.3);
+}
+
+.pemesanan-klinik-page .btn-submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(232, 62, 140, 0.4);
+}
+
+.pemesanan-klinik-page .btn-submit:disabled {
+    background: var(--light-gray);
+    color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Validation Messages */
+.pemesanan-klinik-page .required {
+    color: var(--primary);
+}
+
+.pemesanan-klinik-page .validation-message {
+    color: var(--primary-dark);
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+    background: rgba(232, 62, 140, 0.1);
+    padding: 8px;
+    border-radius: 4px;
+    border-left: 3px solid var(--primary);
+}
+
+/* Success Message */
+.pemesanan-klinik-page .success-message {
+    background: linear-gradient(135deg, rgba(232, 62, 140, 0.1), rgba(214, 51, 132, 0.1));
+    color: var(--primary-dark);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid var(--primary);
+    display: none;
+}
+
+/* Responsive Design untuk halaman Pemesanan Klinik */
+@media (max-width: 992px) {
+    .pemesanan-klinik-page .main-container {
+        grid-template-columns: 1fr;
+    }
+
+    .pemesanan-klinik-page .doctor-info-sidebar {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .pemesanan-klinik-page .main-container {
+        padding-top: 100px;
+        /* Adjust for mobile header */
+    }
+
+    .pemesanan-klinik-page .user-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pemesanan-klinik-page .form-actions {
+        flex-direction: column;
+    }
+
+    .pemesanan-klinik-page .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .pemesanan-klinik-page .date-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+
+    .pemesanan-klinik-page .pet-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .pemesanan-klinik-page .booking-steps {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pemesanan-klinik-page .main-container {
+        padding-top: 120px;
+        /* Adjust for smaller screens */
+    }
+
+    .pemesanan-klinik-page .page-title {
+        font-size: 1.5rem;
+    }
+
+    .pemesanan-klinik-page .section-title {
+        font-size: 1.1rem;
+    }
+
+    .pemesanan-klinik-page .doctor-info-sidebar,
+    .pemesanan-klinik-page .booking-content {
+        padding: 20px;
+    }
+
+    .pemesanan-klinik-page .time-grid {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    }
+
+    .pemesanan-klinik-page .doctor-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .pemesanan-klinik-page .doctor-image {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+}
+
+/* Footer tetap menggunakan tema pink seperti halaman lain */
+.pemesanan-klinik-page footer {
+    background: #e83e8c;
+    color: white;
+    padding: clamp(30px, 6vw, 50px) clamp(20px, 5vw, 60px);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: clamp(25px, 5vw, 40px);
+    margin-top: 60px;
+}
+
+.pemesanan-klinik-page footer h3 {
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.pemesanan-klinik-page footer a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+}
+
+.pemesanan-klinik-page footer a:hover {
+    color: #f0f0f0;
+    transform: translateX(5px);
+}
+
+.pemesanan-klinik-page .social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.pemesanan-klinik-page .social-icons a {
+    font-size: 22px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.pemesanan-klinik-page .social-icons a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+}
+
+.pemesanan-klinik-page .copyright {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    margin-top: 20px;
+    grid-column: 1 / -1;
+}
+
+/* ============================================
+STYLE UNTUK HALAMAN KUPON DISKON (I_kupon.php)
+============================================ */
+
+/* Variables khusus untuk halaman Kupon */
+:root {
+    --primary: #e83e8c;
+    --primary-light: #f8bbd9;
+    --primary-dark: #d63384;
+    --accent: #ffc107;
+    --light: #F8F9FA;
+    --dark: #333333;
+    --gray: #6C757D;
+    --light-gray: #E9ECEF;
+    --white: #FFFFFF;
+}
+
+/* Override header untuk halaman Kupon - Pink theme */
+body.kupon-page header {
+    background: rgba(255, 255, 255, 0.12) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(230, 89, 160, 0.3) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+}
+
+body.kupon-page .logo-text,
+body.kupon-page .nav-links a,
+body.kupon-page .header-right {
+    color: #e83e8c !important;
+}
+
+body.kupon-page .nav-links a:hover {
+    color: #e83e8c !important;
+    background: rgba(255, 105, 180, 0.15);
+}
+
+body.kupon-page .btn-login {
+    color: #e83e8c !important;
+    border-color: #e83e8c !important;
+}
+
+body.kupon-page .btn-login:hover {
+    background: rgba(255, 105, 180, 0.1);
+}
+
+/* Main container untuk halaman Kupon */
+.kupon-page .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.kupon-page .coupon-container {
+    max-width: 100%;
+    margin: 30px auto;
+    padding: 80px 15px 30px;
+    /* Padding untuk header fixed */
+}
+
+/* Page title */
+.kupon-page .page-title {
+    font-size: 1.8rem;
+    color: var(--primary);
+    margin-bottom: 8px;
+    text-align: center;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.kupon-page .page-subtitle {
+    color: var(--gray);
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+/* Coupon Scroll Container */
+.kupon-page .coupon-scroll-container {
+    position: relative;
+    margin: 0 -15px;
+    padding: 10px 0;
+}
+
+.kupon-page .coupon-scroll-wrapper {
+    display: flex;
+    gap: 20px;
+    padding: 10px 15px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.kupon-page .coupon-scroll-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+/* Coupon Card */
+.kupon-page .coupon-card {
+    flex: 0 0 320px;
+    background: white;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    display: flex;
+    flex-direction: column;
+    min-height: 280px;
+    position: relative;
+    border-left: 4px solid var(--primary);
+}
+
+.kupon-page .coupon-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(232, 62, 140, 0.3);
+    border-color: var(--primary);
+}
+
+.kupon-page .coupon-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.kupon-page .coupon-info {
+    flex: 1;
+}
+
+.kupon-page .coupon-percentage {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.kupon-page .coupon-description {
+    font-size: 1.1rem;
+    color: var(--dark);
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.kupon-page .coupon-code {
+    background: rgba(232, 62, 140, 0.1);
+    color: var(--primary);
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    border: 2px dashed var(--primary);
+    text-align: center;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.kupon-page .coupon-card:hover .coupon-code {
+    background: rgba(232, 62, 140, 0.2);
+    transform: scale(1.05);
+}
+
+/* Coupon Details */
+.kupon-page .coupon-details {
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+.kupon-page .detail-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    color: var(--dark);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.kupon-page .detail-item i {
+    color: var(--primary);
+    margin-right: 8px;
+    font-size: 0.9rem;
+    min-width: 16px;
+}
+
+/* Coupon Footer */
+.kupon-page .coupon-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 2px solid rgba(232, 62, 140, 0.1);
+}
+
+.kupon-page .coupon-expiry {
+    color: var(--gray);
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Use Coupon Button */
+.kupon-page .use-coupon-btn {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(232, 62, 140, 0.3);
+}
+
+.kupon-page .use-coupon-btn:hover {
+    background: linear-gradient(135deg, var(--primary-dark), #c2185b);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(232, 62, 140, 0.4);
+}
+
+/* Badge */
+.kupon-page .badge {
+    position: absolute;
+    top: -8px;
+    right: 20px;
+    background: var(--primary);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(232, 62, 140, 0.3);
+}
+
+/* Warna berbeda untuk setiap kupon dengan variasi pink */
+.kupon-page .coupon-card:nth-child(1) {
+    border-left: 4px solid #e83e8c;
+    background: linear-gradient(to bottom right, white, rgba(232, 62, 140, 0.03));
+}
+
+.kupon-page .coupon-card:nth-child(1) .coupon-percentage {
+    color: #e83e8c;
+    background: linear-gradient(135deg, #e83e8c, #d63384);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.kupon-page .coupon-card:nth-child(1) .badge {
+    background: linear-gradient(135deg, #e83e8c, #d63384);
+}
+
+.kupon-page .coupon-card:nth-child(2) {
+    border-left: 4px solid #ff6b9d;
+    background: linear-gradient(to bottom right, white, rgba(255, 107, 157, 0.03));
+}
+
+.kupon-page .coupon-card:nth-child(2) .coupon-percentage {
+    color: #ff6b9d;
+    background: linear-gradient(135deg, #ff6b9d, #ff4081);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.kupon-page .coupon-card:nth-child(2) .badge {
+    background: linear-gradient(135deg, #ff6b9d, #ff4081);
+}
+
+.kupon-page .coupon-card:nth-child(2) .use-coupon-btn {
+    background: linear-gradient(135deg, #ff6b9d, #ff4081);
+}
+
+.kupon-page .coupon-card:nth-child(2) .use-coupon-btn:hover {
+    background: linear-gradient(135deg, #ff4081, #e91e63);
+}
+
+.kupon-page .coupon-card:nth-child(3) {
+    border-left: 4px solid #f8bbd9;
+    background: linear-gradient(to bottom right, white, rgba(248, 187, 217, 0.03));
+}
+
+.kupon-page .coupon-card:nth-child(3) .coupon-percentage {
+    color: #f8bbd9;
+    background: linear-gradient(135deg, #f8bbd9, #f48fb1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.kupon-page .coupon-card:nth-child(3) .badge {
+    background: linear-gradient(135deg, #f8bbd9, #f48fb1);
+}
+
+.kupon-page .coupon-card:nth-child(3) .use-coupon-btn {
+    background: linear-gradient(135deg, #f8bbd9, #f48fb1);
+}
+
+.kupon-page .coupon-card:nth-child(3) .use-coupon-btn:hover {
+    background: linear-gradient(135deg, #f48fb1, #ec407a);
+}
+
+/* Scroll buttons */
+.kupon-page .scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(232, 62, 140, 0.2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--primary);
+    z-index: 10;
+    transition: all 0.3s;
+    border: 1px solid rgba(232, 62, 140, 0.2);
+}
+
+.kupon-page .scroll-btn:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(232, 62, 140, 0.3);
+}
+
+.kupon-page .scroll-btn.prev {
+    left: 10px;
+}
+
+.kupon-page .scroll-btn.next {
+    right: 10px;
+}
+
+/* Animation for new cards */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.kupon-page .coupon-card {
+    animation: slideIn 0.5s ease forwards;
+}
+
+.kupon-page .coupon-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.kupon-page .coupon-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.kupon-page .coupon-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+/* Hide scroll buttons on mobile */
+@media (max-width: 768px) {
+    .kupon-page .scroll-btn {
+        display: none;
+    }
+
+    .kupon-page .coupon-scroll-wrapper {
+        padding: 10px 5px;
+    }
+
+    .kupon-page .coupon-card {
+        flex: 0 0 300px;
+    }
+
+    .kupon-page .coupon-container {
+        padding: 100px 15px 30px;
+        /* Adjust for mobile header */
+    }
+}
+
+@media (max-width: 480px) {
+    .kupon-page .coupon-card {
+        flex: 0 0 280px;
+        padding: 20px;
+    }
+
+    .kupon-page .coupon-percentage {
+        font-size: 2.2rem;
+    }
+
+    .kupon-page .coupon-description {
+        font-size: 1rem;
+    }
+
+    .kupon-page .coupon-footer {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+
+    .kupon-page .use-coupon-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .kupon-page .coupon-container {
+        padding: 120px 15px 30px;
+        /* Adjust for smaller screens */
+    }
+}
+
+/* Footer tetap menggunakan tema pink */
+.kupon-page footer {
+    background: #e83e8c;
+    color: white;
+    padding: clamp(30px, 6vw, 50px) clamp(20px, 5vw, 60px);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: clamp(25px, 5vw, 40px);
+    margin-top: 60px;
+}
+
+.kupon-page footer h3 {
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.kupon-page footer a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+}
+
+.kupon-page footer a:hover {
+    color: #f0f0f0;
+    transform: translateX(5px);
+}
+
+.kupon-page .social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.kupon-page .social-icons a {
+    font-size: 22px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.kupon-page .social-icons a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+}
+
+.kupon-page .copyright {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    margin-top: 20px;
+    grid-column: 1 / -1;
+}
+
+/* ============================================
+STYLE UNTUK HALAMAN PROFIL (B_profil.php)
+============================================ */
+
+/* Variables untuk halaman profil */
+:root {
+    --primary: #e83e8c;
+    --primary-light: #f8bbd9;
+    --primary-dark: #d63384;
+    --accent: #ffc107;
+    --light: #F8F9FA;
+    --dark: #333333;
+    --gray: #6C757D;
+    --light-gray: #E9ECEF;
+    --white: #FFFFFF;
+}
+
+/* Override header untuk halaman profil */
+body.profil-page header {
+    background: rgba(255, 255, 255, 0.12) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(230, 89, 160, 0.3) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+}
+
+body.profil-page .logo-text,
+body.profil-page .nav-links a,
+body.profil-page .header-right {
+    color: #e83e8c !important;
+}
+
+body.profil-page .nav-links a:hover {
+    color: #e83e8c !important;
+    background: rgba(255, 105, 180, 0.15);
+}
+
+body.profil-page .btn-login {
+    color: #e83e8c !important;
+    border-color: #e83e8c !important;
+}
+
+body.profil-page .btn-login:hover {
+    background: rgba(255, 105, 180, 0.1);
+}
+
+/* Main container untuk halaman profil */
+.profil-page .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.profil-page .profile-header {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.profil-page .profile-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #e83e8c, #6f42c1);
+}
+
+.profil-page .profile-info {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.profil-page .avatar {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #e83e8c, #6f42c1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 40px;
+    box-shadow: 0 5px 15px rgba(232, 62, 140, 0.3);
+}
+
+.profil-page .user-details h1 {
+    color: #333;
+    margin-bottom: 8px;
+    font-size: 28px;
+}
+
+.profil-page .user-details p {
+    color: #666;
+    font-size: 16px;
+}
+
+.profil-page .tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+
+.profil-page .tab {
+    padding: 12px 24px;
+    background: none;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    color: #666;
+    position: relative;
+}
+
+.profil-page .tab.active {
+    background: #e83e8c;
+    color: white;
+    box-shadow: 0 4px 12px rgba(232, 62, 140, 0.3);
+}
+
+.profil-page .tab:hover:not(.active) {
+    background: #f8f9fa;
+    color: #e83e8c;
+}
+
+.profil-page .tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.profil-page .tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.profil-page .form-section {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    margin-bottom: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profil-page .form-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.profil-page .form-section h2 {
+    color: #333;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profil-page .form-section h2 i {
+    color: #e83e8c;
+}
+
+.profil-page .form-group {
+    margin-bottom: 20px;
+}
+
+.profil-page .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.profil-page .form-group input,
+.profil-page .form-group select,
+.profil-page .form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background: #fafafa;
+}
+
+.profil-page .form-group input:focus,
+.profil-page .form-group select:focus,
+.profil-page .form-group textarea:focus {
+    outline: none;
+    border-color: #e83e8c;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(232, 62, 140, 0.1);
+}
+
+.profil-page .btn-primary {
+    background: linear-gradient(135deg, #e83e8c, #d63384);
+    color: white;
+    padding: 14px 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(232, 62, 140, 0.3);
+}
+
+.profil-page .btn-primary:hover {
+    background: linear-gradient(135deg, #d63384, #c2185b);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(232, 62, 140, 0.4);
+}
+
+.profil-page .btn-secondary {
+    background: #6c757d;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.profil-page .btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+}
+
+.profil-page .btn-danger {
+    background: #dc3545;
+    color: white;
+    padding: 14px 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.profil-page .btn-danger:hover {
+    background: #c82333;
+    transform: translateY(-2px);
+}
+
+.profil-page .pets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.profil-page .pet-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    border-left: 5px solid #e83e8c;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.profil-page .pet-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.profil-page .pet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.profil-page .pet-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.profil-page .pet-type {
+    background: #e83e8c;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.profil-page .pet-details {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.profil-page .pet-details p {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.profil-page .pet-details i {
+    color: #e83e8c;
+    width: 18px;
+}
+
+.profil-page .pet-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.profil-page .add-pet-form {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    margin-bottom: 25px;
+    border: 2px dashed #e83e8c;
+    transition: all 0.3s ease;
+}
+
+.profil-page .add-pet-form:hover {
+    border-color: #d63384;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.profil-page .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.profil-page .gender-selector {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.profil-page .gender-btn {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    background: #fafafa;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.profil-page .gender-btn:hover {
+    border-color: #e83e8c;
+}
+
+.profil-page .gender-btn.selected {
+    border-color: #e83e8c;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(232, 62, 140, 0.15);
+    color: #e83e8c;
+}
+
+.profil-page .input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.profil-page .message {
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.profil-page .message.success {
+    background: #e6f4ea;
+    color: #137333;
+    border: 1px solid #81c393;
+}
+
+.profil-page .message.error {
+    background: #fce8e6;
+    color: #c5221f;
+    border: 1px solid #e7b5b2;
+}
+
+.profil-page .empty-state {
+    text-align: center;
+    padding: 50px 20px;
+    color: #666;
+    grid-column: 1 / -1;
+}
+
+.profil-page .empty-state i {
+    font-size: 60px;
+    margin-bottom: 20px;
+    color: #e83e8c;
+    opacity: 0.7;
+}
+
+.profil-page .empty-state h3 {
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+.profil-page .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.profil-page .section-header h2 {
+    margin: 0;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profil-page .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.profil-page .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -40%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.profil-page .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.profil-page .modal-header h3 {
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+}
+
+.profil-page .close-modal {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s ease;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profil-page .close-modal:hover {
+    color: #e83e8c;
+    background: #f8f9fa;
+}
+
+.profil-page .modal-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.profil-page .modal-actions .btn-primary {
+    flex: 1;
+}
+
+.profil-page .modal-actions .btn-secondary {
+    flex: 1;
+}
+
+/* Tambahkan style untuk tombol hapus akun */
+.profil-page #btnHapusAkun {
+    background: #dc3545;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.profil-page #btnHapusAkun:hover {
+    background: #bb2d3b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+}
+
+/* Style untuk modal hapus akun */
+.profil-page #hapusAkunModal .modal-content {
+    max-width: 500px;
+}
+
+/* Responsif untuk tombol header */
+@media (max-width: 768px) {
+    .profil-page .container>div:first-child {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .profil-page .container>div:first-child>div:last-child {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .profil-page #btnHapusAkun,
+    .profil-page .container>div:first-child>div:last-child a {
+        padding: 10px 15px;
+        font-size: 13px;
+    }
+}
+
+/* Tambahkan di bagian CSS */
+.profil-page .input-valid {
+    border-color: #27ae60 !important;
+}
+
+.profil-page .input-invalid {
+    border-color: #e74c3c !important;
+}
+
+.profil-page .input-warning {
+    border-color: #f39c12 !important;
+}
+
+.profil-page .counter-valid {
+    color: #27ae60 !important;
+}
+
+.profil-page .counter-warning {
+    color: #f39c12 !important;
+}
+
+.profil-page .counter-invalid {
+    color: #e74c3c !important;
+}
+
+/* Responsif untuk halaman profil */
+@media (max-width: 768px) {
+
+    .profil-page .form-row,
+    .profil-page .input-row {
+        grid-template-columns: 1fr;
+    }
+
+    .profil-page .pets-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profil-page .profile-info {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profil-page .tabs {
+        flex-wrap: wrap;
+    }
+
+    .profil-page .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .profil-page .pet-actions {
+        flex-direction: column;
+    }
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #e83e8c;
+    text-decoration: none;
+    margin-bottom: 25px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border: 2px solid #e83e8c;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.back-btn:hover {
+    background: #e83e8c;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(232, 62, 140, 0.3);
+}
+
+/* ============================================
+STYLE UNTUK HALAMAN TEMUI ONLINE (I_temui_online.php)
+============================================ */
+
+/* Variables untuk halaman Temui Online */
+:root {
+    --primary: #e83e8c;
+    --primary-light: #f8bbd9;
+    --primary-dark: #d63384;
+    --accent: #ffc107;
+    --light: #F8F9FA;
+    --dark: #333333;
+    --gray: #6C757D;
+    --light-gray: #E9ECEF;
+    --white: #FFFFFF;
+}
+
+/* Override header untuk halaman Temui Online - Pink theme */
+body.temui-online-page header {
+    background: rgba(255, 255, 255, 0.12) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(230, 89, 160, 0.3) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+}
+
+body.temui-online-page .logo-text,
+body.temui-online-page .nav-links a,
+body.temui-online-page .header-right {
+    color: #e83e8c !important;
+}
+
+body.temui-online-page .nav-links a:hover {
+    color: #e83e8c !important;
+    background: rgba(255, 105, 180, 0.15);
+}
+
+body.temui-online-page .btn-login {
+    color: #e83e8c !important;
+    border-color: #e83e8c !important;
+}
+
+body.temui-online-page .btn-login:hover {
+    background: rgba(255, 105, 180, 0.1);
+}
+
+/* Main container untuk halaman Temui Online */
+.temui-online-page .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.temui-online-page .main-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 30px;
+    margin: 20px 0;
+    padding-top: 40px;
+}
+
+/* Sidebar styles */
+.temui-online-page .sidebar {
+    background-color: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    align-self: start;
+    position: sticky;
+    top: 40px;
+    /* Adjusted for fixed header */
+}
+
+.temui-online-page .sidebar-title {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: var(--dark);
+    font-weight: 600;
+}
+
+.temui-online-page .sidebar-menu {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.temui-online-page .sidebar-menu li {
+    margin-bottom: 15px;
+}
+
+.temui-online-page .sidebar-menu a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--gray);
+    transition: all 0.3s;
+    padding: 8px 0;
+}
+
+.temui-online-page .sidebar-menu a:hover,
+.temui-online-page .sidebar-menu a.active {
+    color: var(--primary);
+}
+
+.temui-online-page .sidebar-menu i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+    color: var(--primary);
+}
+
+.temui-online-page .sidebar-divider {
+    height: 1px;
+    background-color: var(--light-gray);
+    margin: 20px 0;
+}
+
+/* Content styles */
+.temui-online-page .content {
+    background-color: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.temui-online-page .page-header {
+    margin-bottom: 30px;
+}
+
+.temui-online-page .page-title {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.temui-online-page .page-header p {
+    color: var(--gray);
+    margin-top: 10px;
+}
+
+/* Filter section */
+.temui-online-page .filter-section {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.temui-online-page .filter-select {
+    padding: 12px 15px;
+    border: 1px solid var(--light-gray);
+    border-radius: 8px;
+    background-color: white;
+    font-size: 14px;
+    min-width: 200px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(232, 62, 140, 0.2);
+}
+
+.temui-online-page .filter-select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(232, 62, 140, 0.1);
+}
+
+.temui-online-page .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--primary);
+    font-weight: 600;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(232, 62, 140, 0.2);
+}
+
+/* Doctor list */
+.temui-online-page .doctor-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.temui-online-page .doctor-card {
+    background-color: white;
+    border-radius: 15px;
+    padding: 25px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    border-left: 4px solid var(--primary);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.temui-online-page .doctor-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(232, 62, 140, 0.15);
+    border-color: var(--primary);
+}
+
+.temui-online-page .doctor-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+}
+
+.temui-online-page .doctor-header {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.temui-online-page .doctor-image {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background-color: #eaeaea;
+    background-size: cover;
+    background-position: center;
+    margin-right: 20px;
+    flex-shrink: 0;
+    border: 3px solid var(--primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.temui-online-page .doctor-info {
+    flex: 1;
+}
+
+.temui-online-page .doctor-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--dark);
+}
+
+.temui-online-page .doctor-specialty {
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.temui-online-page .doctor-experience {
+    color: var(--gray);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.temui-online-page .doctor-experience i {
+    color: var(--primary);
+}
+
+.temui-online-page .doctor-card-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.temui-online-page .doctor-main-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.temui-online-page .doctor-additional-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.temui-online-page .doctor-details {
+    margin-bottom: 20px;
+}
+
+.temui-online-page .doctor-detail-item {
+    margin-bottom: 15px;
+}
+
+.temui-online-page .consultation-fee {
+    background: rgba(232, 62, 140, 0.05);
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 4px solid var(--primary);
+}
+
+.temui-online-page .fee-label {
+    font-size: 12px;
+    color: var(--gray);
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.temui-online-page .fee-amount {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.temui-online-page .doctor-specialization {
+    background: linear-gradient(135deg, rgba(232, 62, 140, 0.1), rgba(214, 51, 132, 0.1));
+    color: var(--primary);
+    padding: 12px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    border-left: 4px solid var(--primary);
+}
+
+.temui-online-page .doctor-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: auto;
+    gap: 15px;
+}
+
+.temui-online-page .consult-button {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(232, 62, 140, 0.3);
+}
+
+.temui-online-page .consult-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(232, 62, 140, 0.4);
+    background: linear-gradient(135deg, var(--primary-dark), #c2185b);
+}
+
+/* No doctors message */
+.temui-online-page .no-doctors {
+    text-align: center;
+    padding: 40px;
+    color: var(--gray);
+    font-size: 1.1rem;
+    grid-column: 1 / -1;
+}
+
+.temui-online-page .no-doctors i {
+    font-size: 3rem;
+    color: var(--light-gray);
+    margin-bottom: 15px;
+    display: block;
+}
+
+/* Responsive design untuk halaman Temui Online */
+@media (max-width: 992px) {
+    .temui-online-page .main-container {
+        grid-template-columns: 1fr;
+    }
+
+    .temui-online-page .sidebar {
+        position: static;
+    }
+
+    .temui-online-page .doctor-card-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .temui-online-page .main-container {
+        padding-top: 100px;
+        /* Adjust for mobile header */
+    }
+
+    .temui-online-page .doctor-list {
+        grid-template-columns: 1fr;
+    }
+
+    .temui-online-page .filter-section {
+        flex-direction: column;
+    }
+
+    .temui-online-page .filter-select {
+        width: 100%;
+    }
+
+    .temui-online-page .doctor-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .temui-online-page .doctor-image {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .temui-online-page .doctor-actions {
+        flex-direction: column;
+    }
+
+    .temui-online-page .consult-button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .temui-online-page .main-container {
+        padding-top: 120px;
+        /* Adjust for smaller screens */
+    }
+
+    .temui-online-page .page-title {
+        font-size: 1.5rem;
+    }
+
+    .temui-online-page .section-title {
+        font-size: 1.1rem;
+    }
+
+    .temui-online-page .sidebar,
+    .temui-online-page .content {
+        padding: 20px;
+    }
+
+    .temui-online-page .doctor-image {
+        width: 70px;
+        height: 70px;
+    }
+
+    .temui-online-page .doctor-name {
+        font-size: 1.2rem;
+    }
+}
+
+/* Footer tema pink konsisten dengan halaman lain */
+.temui-online-page footer {
+    background: #e83e8c;
+    color: white;
+    padding: clamp(30px, 6vw, 50px) clamp(20px, 5vw, 60px);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: clamp(25px, 5vw, 40px);
+    margin-top: 60px;
+}
+
+.temui-online-page footer h3 {
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.temui-online-page footer a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+}
+
+.temui-online-page footer a:hover {
+    color: #f0f0f0;
+    transform: translateX(5px);
+}
+
+.temui-online-page .social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.temui-online-page .social-icons a {
+    font-size: 22px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.temui-online-page .social-icons a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+}
+
+.temui-online-page .copyright {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    margin-top: 20px;
+    grid-column: 1 / -1;
+}
+
+/* ============================================
+STYLE UNTUK HALAMAN PEMESANAN ONLINE (I_pemesanan_on.php)
+============================================ */
+
+/* Variables untuk halaman Pemesanan Online */
+:root {
+    --primary: #e83e8c;
+    --secondary: #c0b7b6ff;
+    --accent: #4CAF50;
+    --light: #F8F9FA;
+    --dark: #333333;
+    --gray: #6C757D;
+    --light-gray: #E9ECEF;
+    --white: #FFFFFF;
+}
+
+/* Override header untuk halaman Pemesanan Online - Pink theme */
+body:has(.main-container) header {
+    background-color: white;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+body:has(.main-container) .logo-text,
+body:has(.main-container) .nav-links a,
+body:has(.main-container) .header-right {
+    color: #333 !important;
+}
+
+body:has(.main-container) .nav-links a:hover {
+    color: #e83e8c !important;
+    background: rgba(232, 62, 140, 0.1);
+}
+
+body:has(.main-container) .btn-login {
+    color: #e83e8c !important;
+    border-color: #e83e8c !important;
+}
+
+/* Main container untuk halaman Pemesanan Online */
+.pemesanan-online-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.pemesanan-online-container .main-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    margin: 40px 0;
+}
+
+/* Content styles */
+.pemesanan-online-container .content {
+    background-color: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.pemesanan-online-container .sidebar {
+    background-color: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    align-self: start;
+    position: sticky;
+    top: 120px;
+}
+
+.pemesanan-online-container .page-title {
+    font-size: 2rem;
+    color: var(--dark);
+    margin-bottom: 20px;
+}
+
+.pemesanan-online-container .section {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.pemesanan-online-container .section-title {
+    font-size: 1.3rem;
+    color: var(--dark);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+/* Doctor Info */
+.pemesanan-online-container .doctor-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: var(--light);
+    border-radius: 10px;
+}
+
+.pemesanan-online-container .doctor-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    margin-right: 15px;
+}
+
+.pemesanan-online-container .doctor-details h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.pemesanan-online-container .doctor-details p {
+    color: var(--gray);
+    margin-bottom: 5px;
+}
+
+/* Form Styles */
+.pemesanan-online-container .form-group {
+    margin-bottom: 20px;
+}
+
+.pemesanan-online-container .form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.pemesanan-online-container .form-input,
+.pemesanan-online-container .form-select,
+.pemesanan-online-container .form-textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--light-gray);
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.pemesanan-online-container .form-input:focus,
+.pemesanan-online-container .form-select:focus,
+.pemesanan-online-container .form-textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.pemesanan-online-container .form-textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Form Row */
+.pemesanan-online-container .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+/* Time Slots */
+.pemesanan-online-container .time-slots {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.pemesanan-online-container .time-slot {
+    padding: 12px;
+    border: 2px solid var(--light-gray);
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    background-color: white;
+    font-weight: 500;
+}
+
+.pemesanan-online-container .time-slot:hover:not(.disabled) {
+    border-color: var(--primary);
+    background-color: #f9f9f9;
+}
+
+.pemesanan-online-container .time-slot.selected {
+    background-color: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* Disabled and Past Time Slots */
+.pemesanan-online-container .time-slot.disabled {
+    background-color: #e9ecef !important;
+    color: #999 !important;
+    cursor: not-allowed !important;
+    border-color: #ccc !important;
+    opacity: 0.7;
+}
+
+.pemesanan-online-container .time-slot.disabled:hover {
+    background-color: #e9ecef !important;
+    border-color: #ccc !important;
+    cursor: not-allowed !important;
+}
+
+.pemesanan-online-container .time-slot.past-time {
+    background-color: #e9ecef !important;
+    color: #999 !important;
+    opacity: 0.7;
+}
+
+.pemesanan-online-container .time-slot.past-time:hover {
+    border-color: #ccc !important;
+    cursor: not-allowed !important;
+}
+
+/* Coupon Section */
+.pemesanan-online-container .coupon-section {
+    background-color: var(--light);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.pemesanan-online-container .coupon-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.pemesanan-online-container .coupon-active {
+    background-color: var(--accent);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Buttons */
+.pemesanan-online-container .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--primary);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.pemesanan-online-container .btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+
+.pemesanan-online-container .btn-outline:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+.pemesanan-online-container .btn:hover {
+    background-color: #d81b60;
+    transform: translateY(-2px);
+}
+
+/* Summary */
+.pemesanan-online-container .summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.pemesanan-online-container .summary-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid var(--light-gray);
+}
+
+.pemesanan-online-container .discount {
+    color: var(--accent);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .pemesanan-online-container .main-container {
+        grid-template-columns: 1fr;
+    }
+
+    .pemesanan-online-container .doctor-info {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .pemesanan-online-container .doctor-image {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .pemesanan-online-container .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .pemesanan-online-container .time-slots {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+}
+
+/* Footer untuk halaman Pemesanan Online */
+.pemesanan-online-container footer {
+    background: #e83e8c !important;
+    color: white !important;
+    padding: clamp(30px, 6vw, 50px) clamp(20px, 5vw, 60px) !important;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
+    gap: clamp(25px, 5vw, 40px) !important;
+    margin-top: 80px !important;
+}
+
+.pemesanan-online-container footer h3 {
+    font-size: 16px !important;
+    margin-bottom: 20px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    color: white !important;
+}
+
+.pemesanan-online-container footer a {
+    color: #fff !important;
+    text-decoration: none !important;
+    display: block !important;
+    margin-bottom: 8px !important;
+    transition: all 0.3s ease !important;
+}
+
+.pemesanan-online-container footer a:hover {
+    color: #f0f0f0 !important;
+    transform: translateX(5px) !important;
+}
+
+/* ============================================
+STYLE UNTUK HALAMAN KONFIRMASI PEMESANAN ONLINE (I_result.php)
+============================================ */
+
+/* Variables untuk halaman Result */
+:root {
+    --primary: #e83e8c;
+    --secondary: #c0b7b6;
+    --accent: #4CAF50;
+    --light: #F8F9FA;
+    --dark: #333333;
+    --gray: #6C757D;
+    --light-gray: #E9ECEF;
+    --white: #FFFFFF;
+}
+
+/* Body styling untuk halaman Result */
+body.confirmation-page {
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Main container untuk halaman Result */
+.confirmation-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+.confirmation-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.confirmation-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.confirmation-logo i {
+    font-size: 28px;
+    color: var(--primary);
+}
+
+.confirmation-logo h1 {
+    font-size: 24px;
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.confirmation-logo span {
+    color: var(--secondary);
+}
+
+.success-icon {
+    font-size: 60px;
+    color: var(--accent);
+    margin: 20px 0;
+}
+
+.success-title {
+    font-size: 28px;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.success-subtitle {
+    color: var(--gray);
+    font-size: 16px;
+}
+
+/* Doctor Info */
+.doctor-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.doctor-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--light-gray);
+}
+
+.doctor-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 32px;
+    margin-right: 20px;
+}
+
+.doctor-info h3 {
+    font-size: 22px;
+    color: var(--dark);
+    margin-bottom: 5px;
+}
+
+.doctor-specialty {
+    color: var(--gray);
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.rating {
+    color: #FFD700;
+    margin-bottom: 5px;
+}
+
+.review-count {
+    color: var(--gray);
+    font-size: 14px;
+}
+
+/* Consultation Details */
+.consultation-type {
+    background: var(--light);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.consultation-type h4 {
+    color: var(--primary);
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.consultation-type p {
+    font-size: 16px;
+    color: var(--dark);
+    font-weight: 600;
+}
+
+/* Summary Section */
+.summary-section {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.summary-section h3 {
+    color: var(--primary);
+    margin-bottom: 20px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+}
+
+.summary-label {
+    color: var(--gray);
+}
+
+.summary-value {
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    margin-top: 15px;
+    border-top: 2px solid var(--primary);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+/* Preparation Section */
+.preparation-section {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.preparation-section h3 {
+    color: var(--primary);
+    margin-bottom: 20px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.preparation-list {
+    list-style: none;
+    padding: 0;
+}
+
+.preparation-list li {
+    padding: 10px 0;
+    padding-left: 30px;
+    position: relative;
+    color: var(--dark);
+}
+
+.preparation-list li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: bold;
+}
+
+/* WhatsApp Button */
+.whatsapp-section {
+    background: #25D366;
+    color: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.whatsapp-section h3 {
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.whatsapp-btn {
+    background: white;
+    color: #25D366;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+}
+
+.whatsapp-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #d81b60;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(232, 62, 140, 0.3);
+}
+
+.btn-secondary {
+    background: var(--secondary);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #a89d9c;
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background: white;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: white;
+}
+
+/* Footer */
+.confirmation-footer {
+    text-align: center;
+    padding: 30px 0;
+    color: var(--gray);
+    font-size: 14px;
+    border-top: 1px solid var(--light-gray);
+    margin-top: 40px;
+}
+
+.copyright {
+    margin-top: 10px;
+}
+
+/* Additional Styling */
+.badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.badge-success {
+    background: #d4edda;
+    color: #155724;
+}
+
+.badge-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.discount-amount {
+    color: var(--accent);
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.status-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+/* Override header untuk halaman Result */
+body.confirmation-page header {
+    background-color: white !important;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08) !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 100 !important;
+}
+
+body.confirmation-page .logo-text,
+body.confirmation-page .nav-links a,
+body.confirmation-page .header-right {
+    color: #333 !important;
+}
+
+body.confirmation-page .nav-links a:hover {
+    color: #e83e8c !important;
+    background: rgba(232, 62, 140, 0.1) !important;
+}
+
+body.confirmation-page .btn-login {
+    color: #e83e8c !important;
+    border-color: #e83e8c !important;
+}
+
+/* Footer tema pink konsisten */
+.confirmation-page footer {
+    background: #e83e8c !important;
+    color: white !important;
+    padding: clamp(30px, 6vw, 50px) clamp(20px, 5vw, 60px) !important;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
+    gap: clamp(25px, 5vw, 40px) !important;
+    margin-top: 60px !important;
+}
+
+.confirmation-page footer h3 {
+    font-size: 16px !important;
+    margin-bottom: 20px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    color: white !important;
+}
+
+.confirmation-page footer a {
+    color: #fff !important;
+    text-decoration: none !important;
+    display: block !important;
+    margin-bottom: 8px !important;
+    transition: all 0.3s ease !important;
+}
+
+.confirmation-page footer a:hover {
+    color: #f0f0f0 !important;
+    transform: translateX(5px) !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .confirmation-container {
+        padding: 15px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .doctor-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .doctor-avatar {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+}
+
+/* ============================================
+STYLE KHUSUS UNTUK HALAMAN RIWAYAT
+============================================ */
+
+/* Variables khusus untuk halaman Riwayat */
+:root {
+    --primary: #e83e8c;
+    --primary-light: #f8bbd9;
+    --primary-dark: #d63384;
+    --accent: #4CAF50;
+    --light: #F8F9FA;
+    --dark: #333333;
+    --gray: #6C757D;
+    --light-gray: #E9ECEF;
+    --white: #FFFFFF;
+}
+
+/* Body untuk halaman Riwayat */
+body.history-page {
+    background: #f9f9f9;
+    color: #333;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Container untuk halaman Riwayat */
+.history-page .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.history-page .main-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 30px;
+    margin: 20px 0;
+    padding-top: 40px;
+}
+
+/* Sidebar styles */
+.history-page .sidebar {
+    background-color: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    align-self: start;
+    position: sticky;
+    top: 80px;
+    /* Kurangi dari 140px ke 80px */
+    height: fit-content;
+}
+
+.history-page .sidebar-title {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: var(--dark);
+    font-weight: 600;
+}
+
+.history-page .sidebar-menu {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.history-page .sidebar-menu li {
+    margin-bottom: 15px;
+}
+
+.history-page .sidebar-menu a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--gray);
+    transition: all 0.3s;
+    padding: 8px 0;
+}
+
+.history-page .sidebar-menu a:hover,
+.history-page .sidebar-menu a.active {
+    color: var(--primary);
+}
+
+.history-page .sidebar-menu i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+    color: var(--primary);
+}
+
+.history-page .sidebar-divider {
+    height: 1px;
+    background-color: var(--light-gray);
+    margin: 20px 0;
+}
+
+/* Content styles */
+.history-page .content {
+    background-color: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.history-page .page-header {
+    margin-bottom: 30px;
+}
+
+.history-page .page-title {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.history-page .page-header p {
+    color: var(--gray);
+    margin-top: 10px;
+}
+
+/* Filter section */
+.history-page .filter-section {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.history-page .filter-select {
+    padding: 12px 15px;
+    border: 1px solid var(--light-gray);
+    border-radius: 8px;
+    background-color: white;
+    font-size: 14px;
+    min-width: 200px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(232, 62, 140, 0.2);
+}
+
+.history-page .filter-select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(232, 62, 140, 0.1);
+}
+
+.history-page .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--primary);
+    font-weight: 600;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(232, 62, 140, 0.2);
+}
+
+/* History list */
+.history-page .history-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.history-page .history-card {
+    background-color: white;
+    border-radius: 15px;
+    padding: 25px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    border-left: 4px solid var(--primary);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.history-page .history-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(232, 62, 140, 0.15);
+    border-color: var(--primary);
+}
+
+.history-page .history-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+}
+
+.history-page .history-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.history-page .doctor-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #eaeaea;
+    background-size: cover;
+    background-position: center;
+    margin-right: 20px;
+    flex-shrink: 0;
+    border: 3px solid var(--primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.history-page .doctor-info {
+    flex: 1;
+}
+
+.history-page .doctor-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--dark);
+}
+
+.history-page .doctor-specialty {
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.history-page .doctor-experience {
+    color: var(--gray);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.history-page .doctor-experience i {
+    color: var(--primary);
+}
+
+.history-page .contact-info {
+    color: var(--gray);
+    font-size: 14px;
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.history-page .contact-info span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.history-page .contact-info i {
+    color: var(--primary);
+    width: 16px;
+}
+
+.history-page .history-card-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.history-page .history-main-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.history-page .history-additional-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.history-page .history-details {
+    margin-bottom: 20px;
+}
+
+.history-page .booking-type {
+    background: linear-gradient(135deg, rgba(232, 62, 140, 0.1), rgba(214, 51, 132, 0.1));
+    color: var(--primary);
+    padding: 12px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    border-left: 4px solid var(--primary);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.history-page .booking-info {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(56, 142, 60, 0.08));
+    color: var(--accent);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+    border-left: 4px solid var(--accent);
+}
+
+.history-page .booking-info strong {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.history-page .detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 5px 0;
+}
+
+.history-page .detail-label {
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.history-page .detail-value {
+    color: var(--dark);
+    font-weight: 500;
+}
+
+.history-page .status-info {
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.1), rgba(255, 152, 0, 0.1));
+    color: #ff9800;
+    padding: 12px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+    border-left: 4px solid #ff9800;
+}
+
+.history-page .history-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: auto;
+    gap: 15px;
+}
+
+.history-page .action-button {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(232, 62, 140, 0.3);
+    text-decoration: none;
+}
+
+.history-page .action-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(232, 62, 140, 0.4);
+    background: linear-gradient(135deg, var(--primary-dark), #c2185b);
+}
+
+.history-page .danger-button {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+}
+
+.history-page .danger-button:hover {
+    background: linear-gradient(135deg, #c82333, #a71e2a);
+}
+
+.history-page .secondary-button {
+    background: linear-gradient(135deg, #6c757d, #5a6268);
+}
+
+.history-page .secondary-button:hover {
+    background: linear-gradient(135deg, #5a6268, #4e555b);
+}
+
+/* No bookings message */
+.history-page .no-bookings {
+    text-align: center;
+    padding: 60px;
+    color: var(--gray);
+    font-size: 1.1rem;
+    grid-column: 1 / -1;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.history-page .no-bookings i {
+    font-size: 3rem;
+    color: var(--light-gray);
+    margin-bottom: 15px;
+    display: block;
+}
+
+/* Status badges */
+.history-page .status-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.history-page .status-menunggu,
+.history-page .status-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.history-page .status-diproses,
+.history-page .status-confirmed {
+    background: #cce7ff;
+    color: #004085;
+}
+
+.history-page .status-selesai,
+.history-page .status-completed {
+    background: #d4edda;
+    color: #155724;
+}
+
+.history-page .status-batal,
+.history-page .status-cancelled {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* Modal Styles */
+.history-page .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.history-page .modal-content {
+    background-color: white;
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.history-page .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--light-gray);
+}
+
+.history-page .modal-title {
+    color: var(--primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.history-page .modal-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--gray);
+    transition: color 0.3s ease;
+}
+
+.history-page .modal-close:hover {
+    color: var(--primary);
+}
+
+.history-page .modal-body {
+    margin-bottom: 25px;
+}
+
+.history-page .modal-detail-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.history-page .modal-detail-label {
+    color: var(--gray);
+    font-weight: 500;
+    flex: 1;
+}
+
+.history-page .modal-detail-value {
+    font-weight: 600;
+    color: var(--dark);
+    flex: 2;
+    text-align: right;
+}
+
+.history-page .modal-footer {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+}
+
+/* Responsive design */
+@media (max-width: 992px) {
+    .history-page .main-container {
+        grid-template-columns: 1fr;
+    }
+
+    .history-page .sidebar {
+        position: static;
+    }
+
+    .history-page .history-card-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .history-page .main-container {
+        padding-top: 70px;
+    }
+
+    .history-page .filter-section {
+        flex-direction: column;
+    }
+
+    .history-page .filter-select {
+        width: 100%;
+    }
+
+    .history-page .history-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .history-page .doctor-image {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .history-page .history-actions {
+        flex-direction: column;
+    }
+
+    .history-page .action-button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .history-page .modal-footer {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .history-page .main-container {
+        padding-top: 120px;
+    }
+
+    .history-page .page-title {
+        font-size: 1.5rem;
+    }
+
+    .history-page .section-title {
+        font-size: 1.1rem;
+    }
+
+    .history-page .sidebar,
+    .history-page .content {
+        padding: 20px;
+    }
+
+    .history-page .doctor-image {
+        width: 70px;
+        height: 70px;
+    }
+
+    .history-page .doctor-name {
+        font-size: 1.2rem;
+    }
+}
+
+/* Message styles */
+.history-page .message {
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: slideIn 0.5s ease;
+}
+
+.history-page .message.success {
+    background: #e6f4ea;
+    color: #137333;
+    border: 1px solid #81c393;
+}
+
+.history-page .message.error {
+    background: #fce8e6;
+    color: #c5221f;
+    border: 1px solid #e7b5b2;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+STYLE KHUSUS UNTUK HALAMAN BOOKING AKAN DATANG
+============================================ */
+
+/* Additional styles specific to B_akandatang.php */
+.countdown-timer {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 15px 0;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.countdown-timer i {
+    margin-right: 8px;
+}
+
+.urgent {
+    border-left: 4px solid #dc3545;
+    position: relative;
+}
+
+.urgent::before {
+    content: "URGENT";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #dc3545;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    z-index: 1;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(220, 53, 69, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
+    }
+}
+
+.urgent {
+    animation: pulse 2s infinite;
+}
+
+.join-button {
+    background: #4CAF50;
+    color: white;
+}
+
+.join-button:hover {
+    background: #45a049;
+}
+
+.location-button {
+    background: #2196F3;
+    color: white;
+}
+
+.location-button:hover {
+    background: #0b7dda;
+}
+
+.no-bookings {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--gray);
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    margin: 20px 0;
+    grid-column: 1 / -1;
+}
+
+.no-bookings i {
+    font-size: 4rem;
+    color: var(--light-gray);
+    margin-bottom: 20px;
+    display: block;
+}
+
+.no-bookings h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--dark);
+}
+
+.no-bookings p {
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+
+/* Status badges for upcoming bookings */
+.status-menunggu,
+.status-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-diproses,
+.status-confirmed {
+    background: #cce7ff;
+    color: #004085;
+}
+
+/* Override for upcoming page */
+.history-page .content {
+    flex: 1;
+}
+
+/* Update section title for upcoming */
+.section-title {
+    color: var(--primary);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary);
+    font-size: 1.4rem;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .urgent::before {
+        position: relative;
+        top: auto;
+        right: auto;
+        display: inline-block;
+        margin-left: 10px;
+    }
+}
+
+/* Queue number styling */
+.queue-number {
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary), #d81b60);
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+.queue-label {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    opacity: 0.9;
+}
+
+.queue-value {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1;
+    margin: 10px 0;
+}
+
+/* Detail item styling */
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    padding: 5px 0;
+    font-size: 0.9rem;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.detail-value {
+    color: var(--dark);
+    font-weight: 500;
+}
+
+/* Booking info styling */
+.booking-info {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(56, 142, 60, 0.08));
+    color: var(--accent);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+    border-left: 4px solid var(--accent);
+}
+
+.booking-info strong {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+/* Status info styling */
+.status-info {
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.1), rgba(255, 152, 0, 0.1));
+    color: #ff9800;
+    padding: 12px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+    border-left: 4px solid #ff9800;
+}
+
+/* Action buttons specific for upcoming page */
+.history-actions .action-button {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(232, 62, 140, 0.3);
+    text-decoration: none;
+}
+
+.history-actions .action-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(232, 62, 140, 0.4);
+    background: linear-gradient(135deg, var(--primary-dark), #c2185b);
+}
+
+/* Specific button styles */
+.history-actions .danger-button {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+}
+
+.history-actions .danger-button:hover {
+    background: linear-gradient(135deg, #c82333, #a71e2a);
+}
+
+.history-actions .secondary-button {
+    background: linear-gradient(135deg, #6c757d, #5a6268);
+}
+
+.history-actions .secondary-button:hover {
+    background: linear-gradient(135deg, #5a6268, #4e555b);
+}
+
+/* Special styles for B_akandatang */
+.history-page .history-card .countdown-timer {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .history-page .history-actions {
+        flex-direction: column;
+    }
+
+    .history-page .history-actions .action-button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .queue-value {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 1.2rem;
+    }
+
+    .queue-value {
+        font-size: 1.8rem;
+    }
+}
+
+/* Tambahan styling untuk B_pemesanan_klinik.php */
+.time-option.booked {
+    background: #ffe6e6 !important;
+    color: #dc3545 !important;
+    border-color: #dc3545 !important;
+}
+
+.time-option.past {
+    background: #f0f0f0 !important;
+    color: #999 !important;
+    border-color: #ccc !important;
+    text-decoration: line-through;
+}
+
+.time-option.disabled {
+    background: #f8f9fa !important;
+    color: #ced4da !important;
+    border-color: #dee2e6 !important;
+}
+
+.time-option.selected {
+    background: var(--primary) !important;
+    color: white !important;
+    border-color: var(--primary-dark) !important;
+    box-shadow: 0 0 0 3px rgba(232, 62, 140, 0.3) !important;
+}
+
+.date-option.disabled {
+    background: #f8f9fa !important;
+    color: #ced4da !important;
+    border-color: #dee2e6 !important;
+    cursor: not-allowed !important;
+}
+
+.date-option.disabled:hover {
+    background: #f8f9fa !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.time-option {
+    position: relative;
+    padding: 10px 5px;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.time-option:not(.booked):not(.disabled):not(.past):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling untuk status badge di time options */
+.time-option>div {
+    font-size: 10px;
+    margin-top: 4px;
+    font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .time-option {
+        padding: 8px 3px;
+        font-size: 13px;
+    }
+
+    .time-option>div {
+        font-size: 9px;
+    }
+}
+
+/* Error and Warning Styles */
+.animal-mismatch-warning {
+    display: none;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    animation: fadeIn 0.5s ease;
+}
+
+.animal-mismatch-warning i {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.doctor-card.disabled {
+    opacity: 0.7;
+    filter: grayscale(0.3);
+    position: relative;
+}
+
+.doctor-card.disabled::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.05);
+    z-index: 1;
+    border-radius: 15px;
+    pointer-events: none;
+}
+
+.no-doctors {
+    text-align: center;
+    padding: 60px 20px;
+    color: #666;
+    background: #f9f9f9;
+    border-radius: 15px;
+    border: 2px dashed #ddd;
+}
+
+.no-doctors i {
+    font-size: 48px;
+    color: #ddd;
+    margin-bottom: 15px;
+    display: block;
+}
+
+/* temui online yak */
+    .doctor-card.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        position: relative;
+    }
+    
+    .doctor-card.disabled::after {
+        content: "Tidak sesuai dengan hewan peliharaan Anda";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(255, 0, 0, 0.8);
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 12px;
+        text-align: center;
+        width: 80%;
+        z-index: 10;
+        display: none;
+    }
+    
+    .doctor-card.disabled:hover::after {
+        display: block;
+    }
+    
+    .animal-mismatch-warning {
+        display: none;
+        background-color: #ffeaa7;
+        border: 1px solid #fdcb6e;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+
+    /* Tambahkan ke file style.css atau di bagian head */
+.pet-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    background: white;
+}
+
+.pet-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.pet-card.selected {
+    border-color: var(--primary);
+    background: #e8f4ff;
+}
+
+.pet-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.pet-type-badge {
+    background: var(--primary);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.pet-card-body p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.pet-card-body i {
+    width: 20px;
+    color: var(--gray);
+    margin-right: 5px;
+}
+
+.pet-card-footer {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed #ddd;
+}
+
+.compatible-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #28a745;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.no-pets-message {
+    border: 2px solid #856404;
+}
+
+.validation-message {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 5px;
+    display: none;
+}
+
+.required {
+    color: #dc3545;
+}
+
+.pet-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
