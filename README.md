@@ -1,14 +1,13 @@
 # AB Paw - Veterinary Clinic Management Web Application
 
-AB Paw adalah aplikasi sistem manajemen klinik hewan berbasis web dinamis. Aplikasi ini dirancang untuk memfasilitasi pemilik hewan peliharaan (*pet owners*) dalam melakukan manajemen data hewan, pembuatan janji temu fisik di klinik (*offline booking*), serta konsultasi medis virtual (*online telehealth*) secara terintegrasi.
-Selain itu program ini dibuat sebagai tugas akhir praktikum pemrograman web.
+AB Paw adalah aplikasi sistem manajemen klinik hewan berbasis web dinamis. Aplikasi ini dirancang untuk memfasilitasi pemilik hewan peliharaan (*pet owners*) dalam melakukan manajemen data hewan, pembuatan janji temu fisik di klinik (*offline booking*), serta konsultasi medis virtual (*online telehealth*) secara terintegrasi. Aplikasi ini dikembangkan dan diselesaikan untuk memenuhi tugas akhir praktikum pemrograman web.
 ---
-* **Fitur dan Fungsionalitas Sistem
+## Fitur dan Fungsionalitas Sistem
 Aplikasi AB Paw menyediakan ekosistem digital yang berpusat pada kenyamanan pemilik hewan melalui alur yang terintegrasi. Dimulai dari halaman gerbang utama yang informatif, sistem langsung mengarahkan pengguna baru maupun lama ke dalam modul autentikasi terenkripsi demi menjamin keamanan akun. Setelah berhasil masuk ke dasbor utama, pengguna disuguhkan dengan ruang manajemen data rekam medis terpusat khusus untuk mendaftarkan identitas serta karakteristik klinis dari anabul mereka. Data hewan yang telah tersimpan ini nantinya menjadi entitas wajib yang diikat oleh sistem ketika pengguna ingin mengakses modul reservasi.
 
 Dalam memfasilitasi perawatan medis, sistem ini menyediakan dua jalur layanan utama yang adaptif. Jalur pertama adalah sistem penjadwalan kunjungan fisik ke klinik secara terstruktur, di mana aplikasi secara dinamis menampilkan ketersediaan dokter hewan spesialis beserta tarif jasanya, lalu menggenerasikan nomor antrean unik secara otomatis demi mencegah terjadinya tabrakan jadwal pasien. Jalur kedua berfokus pada fleksibilitas melalui modul konsultasi virtual jarak jauh (telehealth) yang dilengkapi dengan algoritma kalkulasi biaya otomatis, integrasi pemotongan kode kupon loyalitas, pelacakan kode transaksi berkode unik, hingga halaman riwayat rekam medis komprehensif untuk memantau status perkembangan kesehatan hewan secara berkala.
-
-* **Keunggulan dan Nilai Tambah Aplikasi
+--
+## Keunggulan dan Nilai Tambah Aplikasi
 Keunggulan utama dari platform AB Paw terletak pada arsitektur data relasional yang sangat solid dan aman di sisi backend. Dengan mengimplementasikan metode enkripsi satu arah berbasis password hashing modern untuk melindungi kredensial pengguna, aplikasi ini memastikan tingkat privasi data yang tinggi sejak awal proses registrasi. Di sisi basis data, penerapan aturan integritas data yang ketat menjamin bahwa semua transaksi dan rekam medis terikat erat secara logis dengan data master dokter, pemilik, dan hewan peliharaan, sehingga sistem terbebas dari risiko penumpukan data sampah atau data yatim (orphan data) apabila terjadi penghapusan akun.
 
 Dari segi pengalaman pengguna (user experience), aplikasi ini menawarkan efisiensi tinggi melalui modularitas kode yang rapi dan penataan antarmuka visual yang responsif. Dengan performa pemuatan halaman yang cepat dan konsisten berkat pemisahan logika backend dan gaya CSS kustom, pengguna dapat beralih dari satu fitur ke fitur lain tanpa hambatan teknis. Kombinasi antara fleksibilitas layanan medis daring-luring, transparansi hitungan biaya kalkulasi kupon, serta manajemen antrean yang adaptif menjadikan aplikasi ini sebagai solusi portofolio manajemen klinik yang andal, profesional, dan siap diimplementasikan untuk kebutuhan nyata.
